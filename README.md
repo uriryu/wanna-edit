@@ -1,34 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-*
-
-
 # <Wanna_edit>
 
 ## サイト概要
-< 誰の為: 自分の為 , （どんな課題＝不足を表すときにのもの）:⇒依頼が少ないため,  どうなってほしい: 依頼をもらう >
+ - < 誰の為: 自分の為 , （どんな課題＝不足を表すときにのもの）:⇒依頼が少ないため,  どうなってほしい: 依頼をもらう >
+管理者側
+ - 動画のサムネイルを貼り、クリックでYouTubeへ飛ぶ、もしくは埋め込み型にする。
+ - Worksは、常に更新・編集・削除等ができるようにする。
+ - 会員の管理
+ - ジャンル追加、編集。
+カスタマー側
+ - 依頼フォームの入力
+ - 依頼キャンセルや編集
+ - worksの閲覧
+ - SNSリンク
+ - ログイン機能
+ - レビュー（いいね）機能(追加したい機能)　※コメントは、追加できるか不明なため、まずはYouTubeにてレビューをもらう。
+
 ### サイトテーマ
 <動画依頼のサイト>
 
@@ -42,7 +30,7 @@ Things you may want to cover:
 <利用者に実績等を見てもらう。自分と利用者の要望を結ぶサイト>
 
 ## 設計書
-<ページ:　TOP（画像/Works/Aboutリンク）, Aboutページ, Contactページ>
+<ページ:　TOP（画像/Works/Aboutリンク）, Aboutページ, Contactページ, 会員ページ(更新、編集等), Works(管理者側: 新規,一覧,詳細等), ジャンル追加(管理者),一覧>
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -52,10 +40,9 @@ Things you may want to cover:
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
-## Font Awesome SNSリンク等
+
+### Font Awesome SNSリンク等
 < https://fontawesome.com/search?s=solid%2Cbrands >
 
-###　実装機能リスト
+### 実装機能リスト
 < https://docs.google.com/spreadsheets/d/1CVEsNcwTVWYOw4okggziYpRGeoMytu4xZxJPXbZoP10/edit?usp=sharing >
