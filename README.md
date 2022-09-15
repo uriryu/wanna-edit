@@ -26,7 +26,7 @@
 ページ:　TOP（画像/Works/Aboutリンク）, Aboutページ, Contactページ, 会員ページ(更新、編集等), Works(管理者側: 新規,一覧,詳細等), ジャンル追加(管理者),一覧
 
 ### ER図
-![dwcpro_naganocake_er_answersheet drawio (1)](https://user-images.githubusercontent.com/105757895/189108005-81cf3d8e-839c-4645-af54-bf31c1d12b5a.png)
+![dwcpro_naganocake_er_answersheet drawio](https://user-images.githubusercontent.com/105757895/189583012-e41b8b77-1445-4301-bece-ea983a88f3fe.png)
 
 ### 実装機能リスト
 https://docs.google.com/spreadsheets/d/1CVEsNcwTVWYOw4okggziYpRGeoMytu4xZxJPXbZoP10/edit?usp=sharing
