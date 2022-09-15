@@ -2,14 +2,39 @@
 <html>
   <head>
     <title>WannaEdit</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <%= link_to 'WannaEdit', (admin_signed_in? ? admin_top_path : root_path ), class: "logo" %>
+
+        <div id="navbarNavDropdown">
+          <ul class="list-unstyled navbar-nav ml-auto p-2">
+          <% if user_signed_in? %>
+            <li class="nav-item border rounded m-3">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+          <% else %>
+            <li class="nav-item border rounded m-3">
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item border rounded m-3">
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
   <body>
     <%= yield %>
   </body>
