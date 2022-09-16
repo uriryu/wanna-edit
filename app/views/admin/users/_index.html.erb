@@ -1,0 +1,33 @@
+<div class="container">
+<table class="table">
+  <thead>
+    <th>会員ID</th>
+    <th>User_Name</th>
+    <th>会員フラグ</th>
+    <th>会員ステータス</th>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.user_name %></td>
+        <td>
+          <% if user.is_editor? %>
+            <span class="text-secondary">通常会員</span>
+          <% else %>
+            <span class="text-success">Editor会員</span>
+          <% end %>
+        </td>
+        <td>
+          <% if user.is_deleted? %>
+            <span class="text-active">有効</span>
+          <% else %>
+            <span class="text-invalid">退会済み</span>
+          <% end %>
+        </td>
+        <td><%= link_to "詳細", admin_user_path(user), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

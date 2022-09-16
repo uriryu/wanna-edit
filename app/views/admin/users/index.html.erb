@@ -1,2 +1,6 @@
 <h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<section class="inner">
+  <h2 class="section-ttl text-center m-3">会員一覧</h2>
+  <%= render 'index', users: @users %>
+  <!--%= paginate @users %>-->
+</section>

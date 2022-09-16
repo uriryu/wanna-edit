@@ -1,2 +1,54 @@
 <h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<section class="container">
+  <h2><%= @user.user_name %>さんの情報</h2>
+  <table>
+    <thead>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>会員ID</td>
+        <td colspan="2"><%= @user.id %></td>
+      </tr>
+      <tr>
+        <td>User_Name</td>
+        <td><%= @user.user_name %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td colspan="2"><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>電話番号</td>
+        <td colspan="2"><%= @user.telephone_number %></td>
+      </tr>
+      <tr>
+        <td>会員フラグ</td>
+        <td colspan="2">
+          <% if user.is_editor? %>
+            <span class="text-secondary">通常会員</span>
+          <% else %>
+            <span class="text-success">Editor会員</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>会員ステータス</td>
+        <td colspan="2">
+          <% if @customer.is_active? %>
+						<span class="text-active">有効</span>
+					<% else %>
+						<span class="text-invalid">退会済み</span>
+					<% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %></td>
+        <!--<td>%= link_to "注文履歴一覧を見る", admin_user_orders_path(@user), class: "btn btn-primary" %></td>-->
+      </tr>
+    </tbody>
+  </table>
+
+</section>
