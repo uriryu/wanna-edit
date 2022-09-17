@@ -1,2 +1,41 @@
 <h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <h2><%= @User.user_name %> さんの会員情報編集</h2>
+  <%= form_with model:@customer, url: admin_user_path(@user) do |f| %>
+    <%= render 'layouts/error_messages', resource: @user %>
+    <table>
+      <thead>
+        <th></th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>名前</td>
+          <td><%= f.label :user_name %> <%= f.text_field :user_name, placeholder =>"#{@user.user_name}" %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@user.email}" %></td>
+        </tr>
+        <tr>
+          <td>電話番号(ハイフンなし)</td>
+          <td colspan="2"><%= f.text_field :telephone_number, :placeholder =>"#{@user.telephone_number}" %></td>
+        </tr>
+        <tr>
+          <!--enumを使うので0と1の部分は変更が必要かも!-->
+          <td><%= f.radio_button :is_editor, 0 %><%= f.label :is_editor, "通常会員", class: "text-active" %></td>
+          <td><%= f.radio_button :is_editor, 1 %><%= f.label :is_editor, "Editor会員", class: "text-danger" %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", class: "text-active" %></td>
+          <td><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会済み", class: "text-invalid" %></td>
+        </tr>
+        <tr>
+          <td colspan="3"><%= f.submit "更新", class: "btn btn-primary" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
