@@ -1,3 +1,9 @@
+  ja:
+    enums:
+      user:
+        is_editor:
+          normal_user: "通常会員"
+          editor_user: "編集会員"
   activerecord:
     errors:
       messages:
