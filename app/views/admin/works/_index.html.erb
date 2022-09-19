@@ -1,0 +1,24 @@
+<table class="admin_works table">
+  <thead>
+    <tr>
+      <th>編集者</th>
+      <th>タイトル</th>
+      <th>サムネイル</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% works.each do |work| %>
+    <tr>
+      <td class="text-center"><%= link_to work.user.user_name, admin_user_path(user %></td>
+      <td><%= link_to work.title, admin_work_path(work), class: "underline" %></td>
+      <td>
+        <% if work.image.attached? %>
+          <%= image_tag work.image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', "200x200" %>
+        <% end %>
+        </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,2 +1,12 @@
 <h1>Admin::Works#index</h1>
-<p>Find me in app/views/admin/works/index.html.erb</p>
+<div class="container">
+  <h2><%= @user.user_name %>の実績一覧 (全<%= @all_items_count %>件)</h2>
+  <h3>
+    <% if @works.first %>
+      <%= render 'admin/items/index', works: @works, user: @user %>
+      <!--paginate-->
+    <% else %>
+      <h3>実績がみつかりません。</h3>
+    <% end %>
+  </h3>
+</div>
