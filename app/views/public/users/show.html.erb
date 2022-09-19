@@ -1,0 +1,47 @@
+<div class="container">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+  <% end %>
+  <h2>マイページ</h2>
+  <h3>
+    登録情報
+    <%= link_to "編集する", edit_informatio_path, class: "btn btn-success m-2" %>
+    <%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary m-2" %>
+  </h3>
+  <table>
+    <thead>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= image_tag @user.get_profile_image(100,100) %></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><%= @user.user_name %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>自己紹介文</td>
+        <td><%= @user.bio %></td>
+      </tr>
+      <tr>
+        <td>会員フラグ</td>
+        <td><%= @user.is_editor %></td>
+      </tr>
+      <tr>
+        <td>会員ステータス</td>
+        <td><%= @user.is_deleted %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="flex">
+    <!--%= link_to "実績一覧", works_path, class: "btn btn-primary" %>-->
+    <!--%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary ml2" %>-->
+  </div>
+</div>
