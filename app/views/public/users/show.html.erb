@@ -5,7 +5,7 @@
   <h2>マイページ</h2>
   <h3>
     登録情報
-    <%= link_to "編集する", edit_informatio_path, class: "btn btn-success m-2" %>
+    <%= link_to "編集する", edit_information_path, class: "btn btn-success m-2" %>
     <%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary m-2" %>
   </h3>
   <table>
@@ -32,11 +32,13 @@
       </tr>
       <tr>
         <td>会員フラグ</td>
-        <td><%= @user.is_editor %></td>
-      </tr>
-      <tr>
-        <td>会員ステータス</td>
-        <td><%= @user.is_deleted %></td>
+        <td>
+          <% if @user.is_editor_i18n == "通常会員" %>
+            <span class="text-primary">通常会員</span>
+          <% else %>
+            <span class="text-success">編集会員</span>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>

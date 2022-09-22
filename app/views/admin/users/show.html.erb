@@ -27,18 +27,18 @@
       <tr>
         <td>会員フラグ</td>
         <td colspan="2">
-          <% if user.is_editor? %>
+          <% if @user.is_editor_i18n == "通常会員" %>
             <span class="text-secondary">通常会員</span>
           <% else %>
-            <span class="text-success">Editor会員</span>
+            <span class="text-success">編集会員</span>
           <% end %>
         </td>
       </tr>
       <tr>
         <td>会員ステータス</td>
         <td colspan="2">
-          <% if @customer.is_active? %>
-						<span class="text-active">有効</span>
+          <% if @user.is_deleted == false %>
+						<span class="text-success">有効</span>
 					<% else %>
 						<span class="text-invalid">退会済み</span>
 					<% end %>

@@ -1,7 +1,7 @@
 <h1>Admin::Users#edit</h1>
 <div class="container">
-  <h2><%= @User.user_name %> さんの会員情報編集</h2>
-  <%= form_with model:@customer, url: admin_user_path(@user) do |f| %>
+  <h2><%= @user.user_name %> さんの会員情報編集</h2>
+  <%= form_with model: @user, url: admin_user_path(@user) do |f| %>
     <%= render 'layouts/error_messages', resource: @user %>
     <table>
       <thead>
@@ -12,7 +12,7 @@
       <tbody>
         <tr>
           <td>名前</td>
-          <td><%= f.label :user_name %> <%= f.text_field :user_name, placeholder =>"#{@user.user_name}" %></td>
+          <td><%= f.label :user_name %><%= f.text_field :user_name, :placeholder =>"#{@user.user_name}" %></td>
         </tr>
         <tr>
           <td>メールアドレス</td>
@@ -24,8 +24,9 @@
         </tr>
         <tr>
           <!--enumを使うので0と1の部分は変更が必要かも!-->
-          <td><%= f.radio_button :is_editor, 0 %><%= f.label :is_editor, "通常会員", class: "text-active" %></td>
-          <td><%= f.radio_button :is_editor, 1 %><%= f.label :is_editor, "Editor会員", class: "text-danger" %></td>
+          <td>会員フラグ</td>
+          <td><%= f.radio_button :is_editor, User.is_editors.key(0) %><%= f.label :is_editor, User.is_editors_i18n[:normal_user], class: "text-primary" %></td>
+          <td><%= f.radio_button :is_editor, User.is_editors.key(1) %><%= f.label :is_editor, User.is_editors_i18n[:editor_user], class: "text-danger" %></td>
         </tr>
         <tr>
           <td>会員ステータス</td>

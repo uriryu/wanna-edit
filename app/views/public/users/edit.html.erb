@@ -2,7 +2,7 @@
 <div class="container">
   <h2>会員情報編集</h2>
   <%= form_with model: @user, url: update_information_path, method: :patch do |f| %>
-    <%= render 'layout/error_messages', resource: @user %>
+    <%= render 'layouts/error_messages', resource: @user %>
 
     <div>
       <label>ProfileImage</label>

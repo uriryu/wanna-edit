@@ -28,7 +28,7 @@ class Public::UsersController < ApplicationController
   
   private
   
-  def set_ current_user
+  def set_current_user
     @user = current_user
   end
   
