@@ -1,2 +1,46 @@
 <h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  <h2>会員情報編集</h2>
+  <%= form_with model: @user, url: update_information_path, method: :patch do |f| %>
+    <%= render 'layout/error_messages', resource: @user %>
+
+    <div>
+      <label>ProfileImage</label>
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+    </div>
+
+    <div>
+      <label>User_Name</label>
+      <span><%= f.label :user_name, "UserName" %></span>
+      <span><%= f.text_field :user_name, :placeholder =>"#{@user.user_name}", class: "form-control" %></span>
+    </div>
+
+    <div>
+      <label>メールアドレス</label>
+      <span><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@user.email}", class: "form-control" %></span>
+    </div>
+
+    <div>
+      <label>自己紹介</label>
+      <span><%= f.text_field :bio, class: "form-control" %></span>
+    </div>
+
+    <div>
+      <labeel>会員フラグ</labeel>
+      <h5>
+        <%= f.radio_button :is_editor, User.is_editors.key(0) %>
+        <%= f.label :is_editor, User.is_editors_i18n[:normal_user] %>
+      </h5>
+      <h5>
+        <%= f.radio_button :is_editor, User.is_editors.key(1) %>
+        <%= f.label :is_editor, User.is_editors_i18n[:editor_user] %>
+      </h5>
+    </div>
+
+    <div class="flex">
+      <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
+      <%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

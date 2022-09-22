@@ -7,17 +7,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :user_name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :telephone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
+
   enum is_editor: { normal_user: 0, editor_user: 1 }
 
- has_one_attached :profile_image
+  has_one_attached :profile_image
 
- def get_profile_image
-  unless profile_image.attached?
-    file_path = Rails.root.join('app/assets/images/no_image.png')
-    profile_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
-  end
-  profile_image.variant(resize_to_limit: [width, height]).processed
+  def get_profile_image
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.png')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
   # Viewの方で引数を設定するとそのサイズにリサイズできる形になっている↑。
- end
+  end
 
 end
