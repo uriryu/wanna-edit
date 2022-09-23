@@ -10,10 +10,15 @@ Rails.application.routes.draw do
     resources :works, only: [:index, :show, :edit, :update, :destroy]
   end
 
-  devise_for :users, skip: [:passwords], controllers: {
+  devise_for :users, controllers: {
     registrations: "public/registrations",
+    passwords: 'public/passwords', #ゲストユーザーの追加でパスワードを設定させない為追記  skip: [:passwords],を削除中.
     sessions: 'public/sessions'
   }
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
   
   scope module: :public do
     root to: "homes#top"

@@ -24,4 +24,13 @@ class User < ApplicationRecord
   # Viewの方で引数を設定するとそのサイズにリサイズできる形になっている↑。
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.user_name = "ゲスト"
+      user.telephone_number = '00011112222'
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
+
 end

@@ -5,8 +5,12 @@
   <h2>マイページ</h2>
   <h3>
     登録情報
-    <%= link_to "編集する", edit_information_path, class: "btn btn-success m-2" %>
-    <%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary m-2" %>
+    <% if @user.email == 'guest@example.com'%>
+      <span class="text-danger">ゲストユーザーはユーザー情報の編集ができません。</span>
+    <% else %>
+      <%= link_to "編集する", edit_information_path, class: "btn btn-success m-2" %>
+      <%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary m-2" %>
+    <% end %>
   </h3>
   <table>
     <thead>
