@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @work = @user.works
   end
 
   def edit

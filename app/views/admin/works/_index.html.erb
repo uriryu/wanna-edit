@@ -9,7 +9,7 @@
   <tbody>
     <% works.each do |work| %>
     <tr>
-      <td class="text-center"><%= link_to work.user.user_name, admin_user_path(user %></td>
+      <td class="text-center"><%= link_to user.user_name, admin_user_path(user) %></td>
       <td><%= link_to work.title, admin_work_path(work), class: "underline" %></td>
       <td>
         <% if work.image.attached? %>

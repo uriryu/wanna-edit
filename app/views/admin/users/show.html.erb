@@ -40,18 +40,27 @@
           <% if @user.is_deleted == false %>
 						<span class="text-success">有効</span>
 					<% else %>
-						<span class="text-invalid">退会済み</span>
+						<span class="text-danger">退会済み</span>
 					<% end %>
         </td>
       </tr>
-      <tr>
-        <td><%= link_to "レビュー一覧", admin_reviews_path(@user), class: "btn btn-primary" %></td>
-      </tr>
-      <tr>
-        <td><%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %></td>
-        <!--<td>%= link_to "注文履歴一覧を見る", admin_user_orders_path(@user), class: "btn btn-primary" %></td>-->
-      </tr>
+        
     </tbody>
   </table>
 
+  <span>
+    <%= link_to "レビュー一覧", admin_reviews_path(@user), class: "btn btn-primary" %>
+    <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %>
+    <!--%= link_to "注文履歴一覧を見る", admin_user_orders_path(@user), class: "btn btn-primary" %-->
+  </span>
+
+  <h3>
+    <% if @work.first %>
+      <p><%= @user.user_name %>の実績一覧 (全<%= @all_items_count %>件)</p>
+      <%= render 'admin/works/index', works: @works, user: @user %>
+      <!--paginate-->
+    <% else %>
+      <h3>実績がみつかりません。</h3>
+    <% end %>
+  </h3>
 </section>

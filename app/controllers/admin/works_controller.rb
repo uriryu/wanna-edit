@@ -1,15 +1,14 @@
 class Admin::WorksController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_work, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_work, only: [:edit, :update, :destroy]
 
   def index
-    @user = User.find(params[:id])
-    all_works = @user.works
-    @works = all_works
-    @all_works_count = all_works.count
+    @works = Work.all
+    @all_works_count = @works.count
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit

@@ -5,6 +5,7 @@
     <th>User_Name</th>
     <th>会員フラグ</th>
     <th>会員ステータス</th>
+    <th></th>
   </thead>
   <tbody>
     <% users.each do |user| %>
@@ -12,17 +13,17 @@
         <td><%= user.id %></td>
         <td><%= user.user_name %></td>
         <td>
-          <% if user.is_editor? %>
+          <% if user.is_editor == "normal_user" %>
             <span class="text-secondary">通常会員</span>
           <% else %>
             <span class="text-success">Editor会員</span>
           <% end %>
         </td>
         <td>
-          <% if user.is_deleted? %>
-            <span class="text-active">有効</span>
+          <% if user.is_deleted == false %>
+            <span class="text-success">有効</span>
           <% else %>
-            <span class="text-invalid">退会済み</span>
+            <span class="text-danger">退会済み</span>
           <% end %>
         </td>
         <td><%= link_to "詳細", admin_user_path(user), class: "btn btn-primary" %></td>
