@@ -16,14 +16,14 @@
         <%= link_to 'WannaEdit', (admin_signed_in? ? admin_users_path : root_path ), class: "logo" %>
 
         <div id="navbarNavDropdown">
-          <ul class="list-unstyled navbar-nav ml-auto p-2">
-          <% if admin_signed_in? %>
-            <%= render partial: "layouts/admin_header" %>
-          <% elsif user_signed_in? %>
-            <%= render partial: "layouts/users_header" %>
-          <% else %>
-            <%= render partial: "layouts/nomal_header" %>
-          <% end %>
+          <ul class="list-unstyled navbar-nav">
+            <% if admin_signed_in? %>
+              <%= render partial: "layouts/admin_header" %>
+            <% elsif user_signed_in? %>
+              <%= render partial: "layouts/users_header" %>
+            <% else %>
+              <%= render partial: "layouts/nomal_header" %>
+            <% end %>
           </ul>
         </div>
 

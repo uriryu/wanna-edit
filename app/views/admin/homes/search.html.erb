@@ -1,0 +1,11 @@
+<h1>Admin::Homes#search</h1>
+<div class="container">
+  <h2>検索結果</h2>
+  <% if @result.first %>
+    <% if @model == 'user' %>
+      <%= render 'admin/users/index', users: @result %>
+    <% end %>
+  <% else %>
+    <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+  <% end %>
+</div>

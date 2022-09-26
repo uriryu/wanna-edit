@@ -9,6 +9,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @work = @user.works
+    @all_works_count = @work.count
   end
 
   def edit

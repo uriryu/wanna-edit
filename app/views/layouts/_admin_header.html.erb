@@ -1,6 +1,14 @@
-<li class="nav-item border rounded m-3">
-  <%= link_to "実績一覧", admin_works_path, class: 'nav-link text-dark' %>
-</li>
-<li class="nav-item border rounded m-3">
-  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-</li>
+<div class="flex">
+  <li class="nav-item border rounded m-3">
+    <%= link_to "実績一覧", admin_works_path, class: 'nav-link text-dark' %>
+  </li>
+  <li class="nav-item border rounded m-3">
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+  </li>
+  <%= form_tag(admin_search_path, method: :get) do %>
+    <%= text_field_tag "search[content]","", :placeholder =>"会員" %>
+    <%= select_tag "search[model]", options_for_select({"会員" => "user", "商品" => "skill"}) %>
+    <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
+    <%= submit_tag '検索', class: "btn btn-primary" %>
+  <% end %>
+</div>
