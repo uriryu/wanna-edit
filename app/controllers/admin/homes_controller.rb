@@ -17,7 +17,7 @@ class Admin::HomesController < ApplicationController
       if method == 'forward'
         User.where(
           'user_name LIKE ?',
-          "#{content}%"　
+          "#{content}%"
         )
       elsif method == 'backward'
         User.where(
