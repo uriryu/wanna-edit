@@ -1,0 +1,37 @@
+<h1>Public::Works#index</h1>
+<div class="container">
+  <div class="my-3">
+    <h3>実績新規登録</h3>
+    <%= render 'form', work: @work, url: works_path, submit: '登録' %>
+  </div>
+  <div class="m-5">
+    <h3 class="text-center">実績一覧</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">タイトル</th>
+          <th class="text-center">画像</th>
+          <th class="text-center">説明文</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.works.each do |work| %>
+          <tr>
+
+            <td class="m-2 text-center align-middle"><%= work.title %></td>
+            <td class="m-2 text-center align-middle">
+              <%= link_to work_path(work.id) do %>
+                <% if work.image.attached? %>
+                  <%= image_tag work.image, size: '50%x50%', class: "img-responsive" %><br>
+                <% else %>
+                  <%= image_tag 'no_image', size: '50%x50%' %><br>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="m-2 text-center align-middle"><%= work.body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

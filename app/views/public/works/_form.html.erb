@@ -1,0 +1,29 @@
+<%= form_with model:work do |f| %>
+  <%= render 'layouts/error_messages', resource: work %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="form_group row">
+    <%= f.label :title, "タイトル名" %>
+    <div class="col-md-3">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form_group row">
+    <%= f.label :body, "説明文" %>
+    <div class="col-md-5">
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form_group row">
+    <%= f.label :url, "リンク先" %>
+    <div class="col-md-5">
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+  </div>
+
+    <%= f.file_field :image, accept: "image/*" %>
+
+    <%= f.submit submit, class: "btn btn-primary m-2" %>
+  </div>
+<% end %>

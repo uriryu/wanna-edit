@@ -13,7 +13,7 @@
       <td><%= link_to work.title, admin_work_path(work), class: "underline" %></td>
       <td>
         <% if work.image.attached? %>
-          <%= image_tag work.image, size: "200x200" %>
+          <%= image_tag work.get_image, size: "200x200" %>
         <% else %>
           <%= image_tag 'no_image', "200x200" %>
         <% end %>

@@ -1,6 +1,6 @@
 class Admin::WorksController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_work, only: [:edit, :update, :destroy]
+  before_action :ensure_work, only: [:show, :edit, :update, :destroy]
 
   def index
     @works = Work.all

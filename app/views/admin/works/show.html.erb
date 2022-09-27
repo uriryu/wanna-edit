@@ -1,2 +1,33 @@
 <h1>Admin::Works#show</h1>
-<p>Find me in app/views/admin/works/show.html.erb</p>
+<div class="container">
+  <h2>実績詳細</h2>
+  <div class="image_field">
+    <% if @work.image.attached? %>
+      <%= image_tag @work.image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>タイトル</td>
+        <td><%= @work.title %></td>
+      </tr>
+      <tr>
+        <td>説明</td>
+        <td><%= @work.body %></td>
+      </tr>
+      <tr>
+        <td>編集者</td>
+        <td><%= link_to @user.user_name, admin_user_path(user) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
