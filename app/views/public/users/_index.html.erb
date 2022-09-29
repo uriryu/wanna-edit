@@ -1,0 +1,27 @@
+<div class="container">
+<table class="table">
+  <thead>
+    <th>User_Name</th>
+    <th>会員フラグ</th>
+    <th></th>
+  </thead>
+  <tbody>
+  <% users.each do |user| %>
+    <% if user.is_deleted == false %>
+      <tr>
+      <td><%= user.user_name %></td>
+      <td>
+        <% if user.is_editor == "normal_user" %>
+          <span class="text-secondary">通常会員</span>
+        <% else %>
+          <span class="text-success">Editor会員</span>
+        <% end %>
+      </td>
+      <!--<td>%= link_to "詳細", mypage_path(user), class: "btn btn-primary" %></td>-->
+      <!--他のuserのページを見る為に、showとindexを-->
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+</div>

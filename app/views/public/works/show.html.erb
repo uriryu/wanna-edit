@@ -1,2 +1,40 @@
 <h1>Public::Works#show</h1>
-<p>Find me in app/views/public/works/show.html.erb</p>
+<div class="container">
+  <h2>実績詳細</h2>
+  <div class="flex">
+    <div>
+      <% if @work.image.attached? %>
+        <%= image_tag @work.image, size: '320x180', class: "img-responsive" %><br>
+      <% else %>
+        <%= image_tag 'no_image', size: '320x180' %><br>
+      <% end %>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>タイトル</td>
+            <td><%= @work.title %></td>
+          </tr>
+          <tr>
+            <td>説明文</td>
+            <td><%= @work.body %></td>
+          </tr>
+          <tr>
+            <td>URL</td>
+            <td><%= text_url_to_link(h(@work.url)).html_safe %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <%= link_to "編集", edit_work_path(@work), class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>

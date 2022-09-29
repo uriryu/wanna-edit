@@ -1,2 +1,45 @@
 <h1>Public::Works#edit</h1>
-<p>Find me in app/views/public/works/edit.html.erb</p>
+<div class="container">
+<h2><%= @work.title %>の編集</h2>
+<%= form_with model: @work, url: work_path(@work.id), method: :patch do |f| %>
+  <%= render 'layouts/error_messages', resource: @work %>
+  <table>
+    <thead>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>サムネイル</td>
+        <td>
+          <% if @work.image.attached? %>
+            <%= image_tag @work.image, size: '320x180', class: "img-responsive" %><br>
+          <% else %>
+            <%= image_tag 'no_image', size: '320x180' %><br>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><td><%= f.file_field :image, accept: "image/*", class: "form-control" %></td></td>
+      </tr>
+      <tr>
+        <td>タイトル</td>
+        <td><%= f.text_field :title, :placeholder =>"#{@work.title}", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td>説明文</td>
+        <td><%= f.text_area :body, :placeholder =>"#{@work.body}", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td>URL</td>
+        <td><%= f.text_field :url, :placeholder =>"#{@work.url}", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "編集内容を保存する", class: "btn btn-primary" %></td>
+        <td><%= link_to "削除する", work_path(@work.id), method: :delete, class: "btn btn-danger" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+</div>

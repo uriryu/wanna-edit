@@ -24,6 +24,10 @@ class Public::WorksController < ApplicationController
     end
   end
 
+  def update
+    @work.update(work_params) ? (redirect_to work_path(@work)) : (render :edit)
+  end
+
   private
 
   def work_params
