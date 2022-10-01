@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="m-5">
+    <% if user.is_editor_i18n == "編集会員" %>
+    <h3><%= user.user_name %>実績一覧</h3>
+    <p>
+      <% if user == current_user %>
+      <!--ユーザーがログイン中のユーザの時だけ投稿を表示する。-->
+        <%= link_to "投稿", new_work_path, class: "btn btn-lg btn-outline-secondary rounded-circle font-weight-bold shadow-sm offset-md-10" %>
+      <% end %>
+    </p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">タイトル</th>
+          <th class="text-center">画像</th>
+          <th class="text-center">説明文</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user.works.order(created_at: :desc).each do |work| %>
+          <tr>
+            <td class="m-2 text-center align-middle"><%= work.title %></td>
+            <td class="m-2 text-center align-middle">
+              <%= link_to work_path(work.id) do %>
+                <% if work.image.attached? %>
+                  <%= image_tag work.image, size: '50%x50%', class: "img-responsive" %><br>
+                <% else %>
+                  <%= image_tag 'no_image', size: '50%x50%' %><br>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="m-2 text-center align-middle"><%= work.body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+</div>

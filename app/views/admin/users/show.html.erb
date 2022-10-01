@@ -44,7 +44,7 @@
 					<% end %>
         </td>
       </tr>
-        
+
     </tbody>
   </table>
 
@@ -54,13 +54,34 @@
     <!--%= link_to "注文履歴一覧を見る", admin_user_orders_path(@user), class: "btn btn-primary" %-->
   </span>
 
-  <h3>
-    <% if @work.first %>
-      <p><%= @user.user_name %>の実績一覧 (全<%= @all_items_count %>件)</p>
-      <%= render 'admin/works/index', works: @works, user: @user %>
+  <h4 class="my-5">
+    <% if @works.first %>
+      <p><%= @user.user_name %>の実績一覧 (全<%= @all_works_count %>件)</p>
+      <table class="admin_works table">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>サムネイル</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @works.each do |work| %>
+          <tr>
+            <td><%= link_to work.title, admin_work_path(work), class: "underline" %></td>
+            <td>
+              <% if work.image.attached? %>
+                <%= image_tag work.get_image, size: "320x180" %>
+              <% else %>
+                <%= image_tag 'no_image', "320x180" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
       <!--paginate-->
     <% else %>
       <h3>実績がみつかりません。</h3>
     <% end %>
-  </h3>
+  </h4>
 </section>

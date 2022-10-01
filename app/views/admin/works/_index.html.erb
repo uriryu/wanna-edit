@@ -9,13 +9,13 @@
   <tbody>
     <% works.each do |work| %>
     <tr>
-      <td class="text-center"><%= link_to user.user_name, admin_user_path(user) %></td>
+      <td class="text-center"><%= link_to user.user_name, admin_user_path(user.id) %></td>
       <td><%= link_to work.title, admin_work_path(work), class: "underline" %></td>
       <td>
         <% if work.image.attached? %>
-          <%= image_tag work.get_image, size: "200x200" %>
+          <%= image_tag work.get_image, size: "320x180" %>
         <% else %>
-          <%= image_tag 'no_image', "200x200" %>
+          <%= image_tag 'no_image', "320x180" %>
         <% end %>
         </td>
     </tr>

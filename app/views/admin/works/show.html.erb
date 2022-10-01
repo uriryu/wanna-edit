@@ -3,14 +3,15 @@
   <h2>実績詳細</h2>
   <div class="image_field">
     <% if @work.image.attached? %>
-      <%= image_tag @work.image, size: "200x200" %>
+      <%= image_tag @work.image, size: "320x180" %>
     <% else %>
-      <%= image_tag 'no_image', size: "200x200" %>
+      <%= image_tag 'no_image', size: "320x180" %>
     <% end %>
   </div>
   <table>
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -25,9 +26,12 @@
         <td><%= @work.body %></td>
       </tr>
       <tr>
-        <td>編集者</td>
-        <td><%= link_to @user.user_name, admin_user_path(user) %></td>
+        <td>URL</td>
+        <td><%= text_url_to_link(h(@work.url)).html_safe %></td>
       </tr>
     </tbody>
   </table>
+  <div>
+    <%= link_to "削除", admin_work_path(@work.id), method: :delete, "data-confirm" => "#{@work.title}を削除します。よろしいでしょうか？", class: "btn btn-danger" %>
+  </div>
 </div>

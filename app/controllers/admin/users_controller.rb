@@ -8,8 +8,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @work = @user.works
-    @all_works_count = @work.count
+    @works = @user.works
+    @all_works_count = @works.count
   end
 
   def edit

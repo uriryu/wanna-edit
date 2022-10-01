@@ -1,18 +1,5 @@
 <div class="container">
-  <% if flash[:notice] %>
-    <p class="text-active"><%= flash[:notice] %></p>
-  <% end %>
-  <h2 class="my-4">マイページ</h2>
-  <h3 class="text-center">
-    登録情報
-    <% if @user.email == 'guest@example.com'%>
-      <span class="text-danger">ゲストユーザーはユーザー情報の編集ができません。</span>
-    <% else %>
-      <%= link_to "編集する", edit_information_path, class: "btn btn-success m-2" %>
-      <%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary m-2" %>
-    <% end %>
-  </h3>
-  <table class="mx-auto">
+  <table class="mx-auto my-5">
     <thead>
       <th></th>
       <th></th>
@@ -48,8 +35,5 @@
   </table>
   <div class="m-5">
     <%= render 'mywork', user: @user %>
-  </div>
-  <div class="flex">
-    <!--%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary ml2" %>-->
   </div>
 </div>

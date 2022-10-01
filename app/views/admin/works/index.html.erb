@@ -3,7 +3,7 @@
 <!--すべてのアカウントの実績一覧とそれを検索できるようにする。-->
   <h3>
     <% if @works.first %>
-      <h2>全アカウントの実績一覧 (全<%= @all_items_count %>件)</h2>
+      <h2>全アカウントの実績一覧 (全<%= @all_works_count %>件)</h2>
       <%= render 'admin/works/index', works: @works, user: @user %>
       <!--paginate-->
     <% else %>

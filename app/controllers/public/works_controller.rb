@@ -1,17 +1,18 @@
 class Public::WorksController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_work, only: [:show, :edit, :update]
-  def show
+  def new
+    @work = Work.new
   end
 
   def edit
   end
 
   def index
-    @work = Work.new
-    @user = User.find_by(params[:user_id])
-    #find_byでURLに:idがなくても、欲しいデータを取れるようにした。※要確認
-    @works = @user.works.all
+
+  end
+
+  def show
   end
 
   def create
@@ -26,6 +27,11 @@ class Public::WorksController < ApplicationController
 
   def update
     @work.update(work_params) ? (redirect_to work_path(@work)) : (render :edit)
+  end
+
+  def destroy
+    @work.delete
+    redirect_to admin_user_path
   end
 
   private

@@ -5,6 +5,7 @@ class Admin::WorksController < ApplicationController
   def index
     @works = Work.all
     @all_works_count = @works.count
+    @user = User.find_by(params[:id])
   end
 
   def show
@@ -12,6 +13,11 @@ class Admin::WorksController < ApplicationController
   end
 
   def edit
+  end
+
+  def destroy
+    @work.delete
+    redirect_to admin_user_path
   end
 
   private

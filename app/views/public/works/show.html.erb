@@ -33,7 +33,10 @@
         </tbody>
       </table>
       <div>
-        <%= link_to "編集", edit_work_path(@work), class: "btn btn-success" %>
+        <% if user_signed_in? && current_user.id == @work.user_id %>
+          <%= link_to "編集", edit_work_path(@work), class: "btn btn-success" %>
+          <!--削除-->
+        <% end %>
       </div>
     </div>
   </div>

@@ -26,12 +26,13 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'search' => 'homes#search', as: 'search'
     get 'users/mypage' => 'users#show', as: 'mypage'
+    get 'users/:id' => 'users#profile', as: 'profile'
     get 'users/information/edit' => 'users#edit', as: 'edit_information'
     patch 'users/information' => 'users#update', as: 'update_information'
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
-    resources :works, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :works, only: [:new,:index, :show, :edit, :create, :update, :destroy]
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
