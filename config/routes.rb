@@ -32,7 +32,14 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
-    resources :works, only: [:new,:index, :show, :edit, :create, :update, :destroy]
+    resources :works
+
+    resources :users, except: [:new,:index, :show, :edit, :create, :update, :destroy] do
+      member do
+        get :follows, :followers
+      end
+      resource :relationships, only: [:create, :destroy]
+    end
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

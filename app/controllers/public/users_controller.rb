@@ -1,12 +1,17 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_current_user, except: :profile
+  before_action :set_current_user, except: [:profile, :follows, :followers]
 
   def show
+    @works = @user.works.page(params[:page]).reverse_order
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   def profile
     @user = User.find(params[:id])
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   def edit
@@ -27,6 +32,16 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
+  end
+
+  def follows
+    user = User.find(params[:id])
+    @users = user.following_user.page(params[:page]).per(3).reverse_order
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.follower_user.page(params[:page]).per(3).reverse_order
   end
 
   def destroy_user #ゲストユーザー用

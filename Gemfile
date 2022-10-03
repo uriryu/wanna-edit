@@ -64,3 +64,5 @@ gem "enum_help"
 gem 'jquery-rails'
 
 gem 'whenever', require: false
+
+gem 'kaminari'

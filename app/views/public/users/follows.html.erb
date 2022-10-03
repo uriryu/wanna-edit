@@ -1,0 +1,25 @@
+<div class="cover-user-index">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1 class="font-weight-normal mt-5 mb-5">フォロー一覧</h1>
+    </div>
+    <div class="row justify-content-center">
+      <% @users.each do |user| %>
+      <div class="one-post card w-100">
+        <%= link_to user_path(user) do %>
+        <div class="d-flex">
+          <%= image_tag user.get_profile_image(100,100), class: "rounded-circle font-weight-bold shadow-sm" %>
+          <p class="h4 mx-3"><%= user.user_name %></p>
+          <h4 class="mx-5"><%= user.bio %></h4>
+            <% if user.is_editor_i18n == "編集会員" %>
+              <h4 class="mx-5"><%= "#{user.works.count} 実績" %></h4>
+              <!--レビューカウント/elseも記入-->
+            <% end %>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <%= paginate @users %>
+  </div>
+</div>
