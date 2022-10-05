@@ -44,6 +44,12 @@ class Public::UsersController < ApplicationController
     @users = user.follower_user.page(params[:page]).per(3).reverse_order
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:work_id)
+    @favorite_works = Work.find(favorites)
+  end
+
   def destroy_user #ゲストユーザー用
     @user = current_user
     if @user.email == 'guestda@example.com'

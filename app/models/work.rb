@@ -1,6 +1,9 @@
 class Work < ApplicationRecord
   belongs_to :user, dependent: :destroy
   has_many :reviews
+  belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :users, through: :favorites
 
   has_one_attached :image
 
@@ -15,6 +18,10 @@ class Work < ApplicationRecord
     else
       image
     end
+  end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
   end
 
 end

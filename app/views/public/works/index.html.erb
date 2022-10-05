@@ -1,2 +1,13 @@
-<h1>Public::Works#index</h1>
-
+<div class="container">
+  <div>
+    <% @works.each do |work| %>
+      <p><%= link_to work.title, work_path(work.id) %></p>
+      <p><%= work.body %></p>
+      <p class="favorites_buttons_<%= work.id %>">
+        <!--更新する箇所を指定するためidをつける。-->
+        <%= render "public/favorites/favorite", work: work %>
+        <!--eachメソッド内のrender処理の為、インスタンス変数は存在しない。-->
+      </p>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :works, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_works, through: :favorites, source: :work
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
@@ -51,5 +53,6 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+
 
 end

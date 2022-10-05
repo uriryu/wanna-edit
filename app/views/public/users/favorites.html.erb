@@ -1,0 +1,10 @@
+<div class="container">
+  <h4 class="m-5">いいね一覧</h4>
+  <div class="mx-5 border">
+    <% @favorite_works.each do |work| %>
+        <%= image_tag work.image, size: '320x180', class: "img-responsive" %>
+        <%= link_to work.title, work_path(work), class: "h2" %>
+        <%= work.body %>
+    <% end %>
+  </div>
+</div>

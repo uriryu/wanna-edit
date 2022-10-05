@@ -9,7 +9,7 @@ class Public::WorksController < ApplicationController
   end
 
   def index
-
+    @works = Work.all
   end
 
   def show
@@ -31,13 +31,13 @@ class Public::WorksController < ApplicationController
 
   def destroy
     @work.delete
-    redirect_to admin_user_path
+    redirect_to user_path
   end
 
   private
 
   def work_params
-    params.require(:work).permit(:title, :body, :url, :image, :user_id)
+    params.require(:work).permit(:title, :body, :url, :image, :user_id, :work_id)
   end
 
   def ensure_work

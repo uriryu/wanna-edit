@@ -1,0 +1,9 @@
+<% if work.favorited_by?(current_user) %>
+  <%= link_to work_favorites_path(work), method: :delete, remote: true do %>
+    ♥<%= work.favorites.count %>いいね
+  <% end %>
+<% else %>
+  <%= link_to work_favorites_path(work), method: :post, remote: true do %>
+    ♡<%= work.favorites.count %>いいね
+  <% end %>
+<% end %>
