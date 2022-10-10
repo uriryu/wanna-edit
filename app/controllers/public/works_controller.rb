@@ -1,5 +1,5 @@
 class Public::WorksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show]
   before_action :ensure_work, only: [:show, :edit, :update]
   def new
     @work = Work.new
@@ -13,6 +13,7 @@ class Public::WorksController < ApplicationController
   end
 
   def show
+    @review = Review.new
   end
 
   def create
@@ -37,7 +38,7 @@ class Public::WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:title, :body, :url, :image, :user_id, :work_id)
+    params.require(:work).permit(:title, :body, :url, :image, :user_id, :work_id, :review_id, :reputation)
   end
 
   def ensure_work

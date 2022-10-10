@@ -1,0 +1,53 @@
+<div class="container">
+  <h1>レビュー一覧</h1>
+  <%= link_to "レビューを投稿する", work_path(@work) %>
+
+  <div>
+    <p>タイトル</p>
+    <%= @work.title %>
+  </div>
+  <div>
+    <%= image_tag @work.image, size: '320x180', class: "image-responsive" %>
+  </div>
+
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+        <th>レビュー</th>
+        <th>評価</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @reviews.each do |review| %>
+    <tbody>
+      <tr>
+        <td><%= review.user.user_name %></td>
+        <td><%= review.body %></td>
+        <td>
+          <div id="star<%= review.id %>"></div>
+          <script>
+            $('#star<%= review.id %>').empty();
+            $('#star<%= review.id %>').raty({
+              size  :36,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              readOnly: true,
+              score: <%= review.reputation %>,
+            });
+          </script>
+        </td>
+        <td>
+          <% if user_signed_in? && current_user.id == review.user_id %>
+            <%= link_to "編集", edit_work_review_path(@work.id, review.id), class: "btn btn-success" %>
+
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

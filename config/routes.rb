@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
     resources :works do
       resource :favorites, only: [:create, :destroy]
+      resources :reviews, only: [:index, :create, :edit, :update, :destroy]
     end
 
     resources :users, except: [:new,:index, :show, :edit, :create, :update, :destroy] do

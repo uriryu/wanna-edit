@@ -1,0 +1,35 @@
+<p>レビューを書く</p>
+<div>
+  <%= form_with model: [work, review], url: work_reviews_path(work), local: true do |f| %>
+    <div>
+      <%= f.label :opinion %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+
+    <div class="form-group" id="star">
+      <%= f.label :reputation, '評価' %>
+      <%= f.hidden_field :reputation, id: :review_star %>
+    </div>
+
+      <script>
+        $('#star').empty();
+        $('#star').raty({
+          size     : 36,
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'review[reputation]',
+          half: true,
+        });
+      </script>
+
+    <%= f.hidden_field :work_id, { value: work.id} %>
+    <%= link_to "他のレビューも見る", work_reviews_path(work.id), class: "button light ml-3 mt-3" %>
+
+
+    <div class="action">
+      <%= f.submit "保存", class: 'btn btn-success' %>
+    </div>
+
+  <% end %>
+</div>
