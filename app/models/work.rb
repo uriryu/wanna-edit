@@ -24,4 +24,12 @@ class Work < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
+  def avg_score
+    unless self.reviews.empty?
+      reviews.average(:reputation).round(1).to_f
+    else
+      0.0
+    end
+  end
+
 end

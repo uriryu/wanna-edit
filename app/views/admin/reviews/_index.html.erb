@@ -1,5 +1,18 @@
 <div class="container">
   <table class="table">
-    <!--Worksを作ってからにする-->
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @reviews.each do |review| %>
+    <tbody>
+      <tr>
+        <td><%= review.body %></td>
+        <td><%= link_to "編集する", edit_admin_user_review_path(user.id, review.id), class: "btn btn-success" %></td>
+      </tr>
+    </tbody>
+    <% end %>
   </table>
 </div>

@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
     get 'search' => 'homes#search', as: 'search'
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update] do
+      resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+    end
     resources :works, only: [:index, :show, :edit, :update, :destroy]
   end
 

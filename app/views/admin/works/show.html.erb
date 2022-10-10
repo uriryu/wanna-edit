@@ -8,9 +8,10 @@
       <%= image_tag 'no_image', size: "320x180" %>
     <% end %>
   </div>
-  <table>
+  <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -24,6 +25,12 @@
       <tr>
         <td>説明</td>
         <td><%= @work.body %></td>
+      </tr>
+      <tr>
+        <td>評価</td>
+        <td>
+          <h3><%= @work.avg_score %>点 (<%= @work.reviews.count %>件のレビュー)</h3>
+        </td>
       </tr>
       <tr>
         <td>URL</td>

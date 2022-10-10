@@ -10,6 +10,10 @@
     <%= image_tag @work.image, size: '320x180', class: "image-responsive" %>
   </div>
 
+  <div>
+    <h3><%= @work.avg_score %>点 (<%= @work.reviews.count %>件のレビュー)</h3>
+  </div>
+
   <table class="table">
 
     <thead>

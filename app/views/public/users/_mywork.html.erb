@@ -14,6 +14,7 @@
           <th class="text-center">タイトル</th>
           <th class="text-center">画像</th>
           <th class="text-center">説明文</th>
+          <th class="text-center">評価</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +31,9 @@
               <% end %>
             </td>
             <td class="m-2 text-center align-middle"><%= work.body %></td>
+            <td class="m-2 text-center align-middle">
+              <h4><%= work.avg_score %>点 (<%= work.reviews.count %>件のレビュー)</h4>
+            </td>
           </tr>
         <% end %>
       </tbody>
