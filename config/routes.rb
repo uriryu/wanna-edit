@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
 
+  namespace :public do
+    get 'skills/new'
+    get 'skills/index'
+    get 'skills/show'
+    get 'skills/edit'
+  end
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_03_120123) do
+ActiveRecord::Schema.define(version: 2022_10_11_135259) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 2022_10_03_120123) do
     t.index ["work_id"], name: "index_favorites_on_work_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followed_id", null: false
@@ -79,6 +86,26 @@ ActiveRecord::Schema.define(version: 2022_10_03_120123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "check", default: false, null: false
+  end
+
+  create_table "skill_genres", force: :cascade do |t|
+    t.integer "skill_id"
+    t.integer "genre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_skill_genres_on_genre_id"
+    t.index ["skill_id", "genre_id"], name: "index_skill_genres_on_skill_id_and_genre_id", unique: true
+    t.index ["skill_id"], name: "index_skill_genres_on_skill_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name", null: false
+    t.text "body", null: false
+    t.integer "price", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -113,4 +140,6 @@ ActiveRecord::Schema.define(version: 2022_10_03_120123) do
   add_foreign_key "favorites", "works"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "skill_genres", "genres"
+  add_foreign_key "skill_genres", "skills"
 end
