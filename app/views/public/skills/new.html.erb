@@ -1,2 +1,5 @@
 <h1>Public::Skills#new</h1>
-<p>Find me in app/views/public/skills/new.html.erb</p>
+<div class="container">
+  <h2>商品新規登録</h2>
+  <%= render 'form', skill: @skill, url: skills_path, submit: '登録' %>
+</div>

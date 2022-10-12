@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-  namespace :public do
-    get 'skills/new'
-    get 'skills/index'
-    get 'skills/show'
-    get 'skills/edit'
-  end
   namespace :admin do
     get 'genres/index'
     get 'genres/edit'
@@ -45,6 +39,9 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
+
+    resources :skills, only: [:new, :create, :index, :show, :edit, :update]
+
     resources :works do
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:index, :create, :edit, :update, :destroy]
