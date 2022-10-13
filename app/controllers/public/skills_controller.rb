@@ -8,6 +8,7 @@ class Public::SkillsController < ApplicationController
 
   def create
     @skill = Skill.new(skill_params)
+    @skill.user_id = current_user.id
     @skill.save ? (redirect_to skill_path(@skill)): (render :new)
   end
 
@@ -16,7 +17,7 @@ class Public::SkillsController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       all_skills =@genre.skills
     else
-      all_skills = Skill.includes(:genre)
+      all_skills = Skill.includes(:genres)
     end
     @skills = all_skills.page(params[:page])
     @all_skills_count = all_skills.count

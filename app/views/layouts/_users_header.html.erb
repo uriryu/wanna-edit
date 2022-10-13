@@ -2,7 +2,7 @@
   <div class="mx-3 my-1">ようこそ、<%= current_user.user_name %>さん!</div>
   <div class="nav">
     <li class="nav-item border rounded m-2">
-      <%= link_to 'マイページ', mypage_path(current_user), class: 'nav-link text-dark'  %>
+      <%= link_to 'マイページ', mypage_path, class: 'nav-link text-dark'  %>
     </li>
 
     <% if current_user.is_editor_i18n == "編集会員" %>

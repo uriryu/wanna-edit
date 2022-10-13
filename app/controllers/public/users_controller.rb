@@ -6,6 +6,15 @@ class Public::UsersController < ApplicationController
     @works = @user.works.page(params[:page]).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      all_skills = @genre.skills.page(params[:page]).per(5)
+    else
+      all_skills = Skill.includes(:genres)
+    end
+    @skills = all_skills.page(params[:page]).per(5)
+    @all_skills_count = all_skills.count
   end
 
   def profile
