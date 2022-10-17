@@ -1,10 +1,8 @@
-<h1>Public::Skills#show</h1>
+<h1>Admin::Skills#show</h1>
 <div class="container">
   <h2>商品詳細</h2>
-  <div class="flex">
-    <div class="image_field text-center">
-      <%= image_tag @skill.get_image, id: "img_prev" %>
-    </div>
+  <div>
+    <%= image_tag @skill.get_image, id: "img_prev" %>
   </div>
   <table class="table">
     <thead>
@@ -19,7 +17,7 @@
         <td><%= @skill.name %></td>
       </tr>
       <tr>
-        <td>商品説明</td>
+        <td>説明</td>
         <td><%= @skill.body %></td>
       </tr>
       <tr>
@@ -31,23 +29,22 @@
         </td>
       </tr>
       <tr>
-        <td>税抜価格</td>
-        <td><%= @skill.price %> 円</td>
+        <td>税別価格</td>
+        <td><%= @skill.price %>円</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
         <td>
           <% if @skill.is_active? %>
-            <span class="text-success">販売中</span>
-          <% else %>
-            <span class="text-danger">販売停止中</span>
-          <% end %>
+						<span class="text-active">販売中</span>
+					<% else %>
+						<span class="text-invalid">販売停止中</span>
+					<% end %>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="flex text-center p15">
-    <%= link_to "編集する", edit_skill_path(@skill), class: "btn btn-success" %>
-    <%= link_to "一覧", skills_path, class: "btn btn-secondary" %>
+  <div class="flex align-center pl5">
+    <%= link_to "編集する", edit_admin_skill_path(@skill), class: "btn btn-success" %>
   </div>
 </div>

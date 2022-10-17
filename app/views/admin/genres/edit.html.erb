@@ -1,2 +1,5 @@
 <h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div>
+  <h2>ジャンル編集</h2>
+  <%= render 'form', genre: @genre, url: admin_genre_path(@genre), submit: '更新' %>
+</div>

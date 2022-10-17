@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -16,6 +11,11 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :show, :edit, :update, :destroy]
     end
     resources :works, only: [:index, :show, :edit, :update, :destroy]
+    resources :skills, only: [:index, :show, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:index, :show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
 
   devise_for :users, controllers: {

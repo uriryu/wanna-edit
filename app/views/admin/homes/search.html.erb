@@ -4,6 +4,8 @@
   <% if @result.first %>
     <% if @model == 'user' %>
       <%= render 'admin/users/index', users: @result %>
+    <% else @model == 'skill' %>
+      <%= render 'admin/skills/index', skills: @result %>
     <% end %>
   <% else %>
     <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>

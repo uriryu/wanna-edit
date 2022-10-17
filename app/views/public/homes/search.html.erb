@@ -3,6 +3,8 @@
   <% if @result.first %>
     <% if @model == 'user' %>
       <%= render 'public/users/index', users: @result %>
+    <% else @model == 'skill' %>
+      <%= render 'public/skills/index', skills: @result %>
     <% end %>
   <% else %>
     <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>

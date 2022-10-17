@@ -1,0 +1,5 @@
+<h1>Admin::Skills#edit</h1>
+<div class="container">
+  <h2><%= @skill.name %>の編集</h2>
+  <%= render 'form', skill: @skill, url: admin_skill_path(@skill), submit: '更新' %>
+</div>

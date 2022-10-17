@@ -1,0 +1,32 @@
+<table class="table m-5">
+  <thead>
+    <tr>
+      <th>商品ID</th>
+			<th>商品名</th>
+			<th>税抜価格</th>
+			<th>ジャンル</th>
+			<th>販売ステータス</th>
+    </tr>
+  </thead>
+  <tboyd>
+    <% skills.each do |skill| %>
+      <tr>
+        <td><%= skill.id %></td>
+        <td><%= link_to skill.name, admin_skill_path(skill), class: "underline" %></td>
+        <td><%= skill.price %> 円</td>
+        <td>
+          <% skill.genres.each do |genre| %>
+            <span><%=link_to genre.name, admin_skills_path(genre_id: genre.id) %></span>
+          <% end %>
+        </td>
+        <td>
+          <% if skill.is_active? %>
+            <span class="text-active">販売中</span>
+				  <% else %>
+					  <span class="text-invalid">販売停止中</span>
+				  <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tboyd>
+</table>

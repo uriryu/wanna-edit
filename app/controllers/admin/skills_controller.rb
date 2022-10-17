@@ -1,17 +1,6 @@
-class Public::SkillsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :ensure_skill, only: [:show, :edit, :update]
-
-  def new
-    @skill = Skill.new
-  end
-
-  def create
-    @skill = Skill.new(skill_params)
-    @skill.user_id = current_user.id
-    @skill.save ? (redirect_to skill_path(@skill)): (render :new)
-  end
-
+class Admin::SkillsController < ApplicationController
+  before_action :authenticate_admin!
+  before_action :ensure_skill, only: [:show, :edit, :update, :destroy]
   def index
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
@@ -30,7 +19,10 @@ class Public::SkillsController < ApplicationController
   end
 
   def update
-    @skill.update(skill_params) ? (redirect_to skill_path(@skill)) : (render :edit)
+    @skill.update(skill_params) ? (redirect_to admin_skill_path(@skill)) : (render :edit)
+  end
+
+  def destroy
   end
   private
 
@@ -41,5 +33,4 @@ class Public::SkillsController < ApplicationController
   def ensure_skill
     @skill = Skill.find(params[:id])
   end
-
 end
