@@ -1,2 +1,23 @@
 <h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <h2>注文情報入力</h2>
+  <% if flash[:error] %>
+    <div>
+      <p><%= flash[:error] %></p>
+    </div>
+  <% end %>
+  <%= form_with model:@order, url: orders_confirm_path do |f| %>
+    <div>
+      <h3>支払方法</h3>
+      <%= f.radio_button :payment_method, "credit_card", :checked => true %>
+      <%= f.label :payment_method, Order.payment_method_i18n[:credit_card] %>
+      <%= f.radio_button :payment_method, "transfer" %>
+      <%= f.label :payment_method, Order.payment_method_i18n[:transfer] %>
+    </div>
+    <div>
+      <%= f.label :name, "依頼者名" %>
+      <%= f.text_field :name, autocomplete: "name", placeholder: "依頼者名" %>
+    </div>
+    <%= f.submit "注文確認画面に進む", class: "btn btn-primary submit_to_confirm_order" %>
+  <% end %>
+</div>
