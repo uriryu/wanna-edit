@@ -39,8 +39,14 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/confirm' => 'orders#error'
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks'
 
-    resources :skills, only: [:new, :create, :index, :show, :edit, :update]
+    resources :skills, only: [:new, :create, :index, :show, :edit, :update] do
+      resources :cart_items, only: [:create, :update, :destroy]
+    end
 
     resources :works do
       resource :favorites, only: [:create, :destroy]
@@ -54,6 +60,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
     end
 
+    resources :orders, only: [:new, :index, :create, :show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

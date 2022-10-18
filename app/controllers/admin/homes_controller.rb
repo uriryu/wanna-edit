@@ -38,13 +38,13 @@ class Admin::HomesController < ApplicationController
       end
     elsif model == 'skill'
       if method == 'forward'
-        Skill.where('name LIKE ?', content + '%').includes(:genre)
+        Skill.where('name LIKE ?', content + '%').includes(:genres)
       elsif method == 'backward'
-        Skill.where('name LIKE ?', '%' + content).includes(:genre)
+        Skill.where('name LIKE ?', '%' + content).includes(:genres)
       elsif method == 'perfect'
-        Skill.where(name: content).includes(:genre)
+        Skill.where(name: content).includes(:genres)
       else #partial
-        Skill.where('name LIKE ?', '%' + content + '%').includes(:genre)
+        Skill.where('name LIKE ?', '%' + content + '%').includes(:genres)
       end
     else
       []

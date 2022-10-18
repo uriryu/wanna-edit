@@ -1,16 +1,43 @@
   ja:
+    activerecord:
+    attributes:
+      item:
+        image: "画像"
+        name: "商品名"
+        introduction: "商品説明"
+        price: "税抜価格"
+      cart_item:
+        amount: "数量"
+      genre:
+        name: "ジャンル名"
     enums:
       user:
         is_editor:
           normal_user: "通常会員"
           editor_user: "編集会員"
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+      order:
+        payment_method:
+          credit_card: 'クレジットカード'
+          transfer: '銀行振込'
+        status:
+          waiting_deposit: '入金待ち'
+          confirm_deposit: '入金確認'
+          in_production: '製作中'
+          preparing: '準備中'
+          completed: '依頼完了'
+      order_detail:
+        making_status:
+          cannot_start: '着手不可'
+          waiting_start: '製作待ち'
+          in_production: '製作中'
+          completed: '製作完了'
+    activerecord:
+      errors:
+        messages:
+          record_invalid: 'バリデーションに失敗しました: %{errors}'
+          restrict_dependent_destroy:
+            has_one: "%{record}が存在しているので削除できません"
+            has_many: "%{record}が存在しているので削除できません"
   views:
     pagination:
       first: "≪"

@@ -1,2 +1,36 @@
 <h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<div>
+  <h2>
+    <% if params[:user_id] %>
+      <%= @user.name %>さんの注文履歴一覧
+    <% elsif params[:created_at] == "today" %>
+      本日の注文履歴一覧
+    <% else %>
+      注文履歴一覧
+    <% end %>
+  </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>注文日</th>
+				<th>購入者</th>
+				<th>注文個数</th>
+				<th>総計</th>
+				<th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order), class: "underline" %></td>
+          <td><%= link_to order.user.name, admin_user_path(order.user) %></td>
+          <td><%= order.order_details.sum(:amount) %></td>
+          <td><%= order.total_payment %>円</td>
+          <td><%= order.status_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @orders %>
+</div>

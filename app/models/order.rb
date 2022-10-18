@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   scope :ordered_today, -> { where(created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day) }
   
   enum payment_method: {credit_card: 0, transfer: 1 }
-  enum status: { waiting_deposit: 0, confirm_deposit: 1, in_production: 2, preparing_shipment: 3, shipped: 4 }
+  enum status: { waiting_deposit: 0, confirm_deposit: 1, in_production: 2, preparing: 3, completed: 4 }
 
   def create_order_details(customer)
     unless order_details.first

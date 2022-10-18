@@ -54,5 +54,9 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
+  def has_in_cart(skill)
+    cart_items.find_by(skill_id: skill.id)
+  end
+
 
 end
