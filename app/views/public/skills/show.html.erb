@@ -46,8 +46,31 @@
       </tr>
     </tbody>
   </table>
-  <div class="flex text-center p15">
-    <%= link_to "編集する", edit_skill_path(@skill), class: "btn btn-success" %>
-    <%= link_to "一覧", skills_path, class: "btn btn-secondary" %>
+  <div class="text-center">
+    <% if user_signed_in? %>
+					<% cart_item = current_user.has_in_cart(@skill) %>
+					<% if cart_item %>
+						<%= form_with model: [@skill, cart_item] do |f| %>
+							<p>こちらの商品は、既にカートに入っています。</p>
+							<%= f.select :amount, [*(1..10)] %>
+							<%= f.submit "数量変更", class: "btn btn-primary" %>
+						<% end %>
+					<% elsif @skill.is_active? %>
+						<%= form_with model: [@skill, @cart_item] do |f| %>
+							<p>数量を選択して下さい。</p>
+							<%= f.select :amount, [*(1..10)], {selected: 1} %>
+							<%= f.submit "カートに入れる", class: "btn btn-primary" %>
+						<% end %>
+					<% else %>
+						<p class="bold">こちらの商品は、現在販売停止中です。</p>
+					<% end %>
+				<% else %>
+					<p>カート機能をご利用いただくには、<br><%= link_to "こちら", new_customer_registration_path, class: "underline" %>から新規登録を行なってください。</p>
+				<% end %>
   </div>
+  <% if @skill.user_id == current_user %>
+    <div class="flex text-center pl5">
+      <%= link_to "編集する", edit_skill_path(@skill), class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>

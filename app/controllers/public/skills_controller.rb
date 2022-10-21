@@ -1,5 +1,5 @@
 class Public::SkillsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :ensure_skill, only: [:show, :edit, :update]
 
   def new
@@ -24,6 +24,7 @@ class Public::SkillsController < ApplicationController
   end
 
   def show
+    @cart_item = CartItem.new
   end
 
   def edit

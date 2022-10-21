@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :skills, only: [:new, :create, :index, :show, :edit, :update] do
       resources :cart_items, only: [:create, :update, :destroy]
     end
-
+    resources :cart_items, only: [:index]
     resources :works do
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:index, :create, :edit, :update, :destroy]

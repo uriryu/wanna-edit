@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_user!
   before_action :ensure_cart_items, only: [:new, :confirm, :create, :error]
 
   def new
@@ -39,7 +39,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :payment_method)
+    params.require(:order).permit(:name, :payment_method, :deadline)
   end
 
   def ensure_cart_items

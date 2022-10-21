@@ -2,21 +2,25 @@
 <div class="container">
   <h2>注文情報入力</h2>
   <% if flash[:error] %>
-    <div>
+    <div class="m-3">
       <p><%= flash[:error] %></p>
     </div>
   <% end %>
   <%= form_with model:@order, url: orders_confirm_path do |f| %>
     <div>
-      <h3>支払方法</h3>
+      <h3 class="my-5">支払方法</h3>
       <%= f.radio_button :payment_method, "credit_card", :checked => true %>
-      <%= f.label :payment_method, Order.payment_method_i18n[:credit_card] %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
       <%= f.radio_button :payment_method, "transfer" %>
-      <%= f.label :payment_method, Order.payment_method_i18n[:transfer] %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
     </div>
-    <div>
-      <%= f.label :name, "依頼者名" %>
-      <%= f.text_field :name, autocomplete: "name", placeholder: "依頼者名" %>
+    <div class="my-5">
+      <%= f.label :name, "依頼者名", class: "mx-3" %>
+      <%= f.text_field :name, autocomplete: "name", placeholder: "依頼者名"%>
+    </div>
+    <div class="my-5">
+      <%= f.label :deadline, "締め切り", class: "mx-3" %>
+      <%= f.date_select :deadline, include_blank: true, selected: Date.today, class: 'form-control' %>
     </div>
     <%= f.submit "注文確認画面に進む", class: "btn btn-primary submit_to_confirm_order" %>
   <% end %>

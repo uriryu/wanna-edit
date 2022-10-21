@@ -1,7 +1,7 @@
 <div class="container">
   <h2>注文情報確認</h2>
   <div class="flex">
-    <table class="confirm_cart_items mr2 mb3 has_border">
+    <table class="mr-2 mb-3">
       <thead>
         <tr>
           <th colspan="2">商品名</th>
@@ -25,8 +25,8 @@
         <% end %>
       </tbody>
     </table>
-    
-    <table class="confirm_prices has_border">
+
+    <table class="table m-5">
       <thead>
         <tr>
           <th></th>
@@ -35,20 +35,27 @@
       </thead>
       <tbody>
         <tr>
-          <td>商品合計</td>
-          <td><%= @cart_item.sum(&:subtotal) %></td>
+          <td>
+            <h4>商品合計</h4>
+          </td>
+          <td><%= @cart_items.sum(&:subtotal) %></td>
         </tr>
       </tbody>
     </table>
   </div>
   <%= form_with model:@order, url: orders_path do |f| %>
 		<div class="field">
-			<%= f.label :payment_method, "支払い方法" %>
-			<p><%= @order.payment_method_i18n %></p>
+			<h3><%= f.label :payment_method, "支払い方法" %></h3>
+			<p class="text-center h4 text-success"><%= @order.payment_method_i18n %></p>
 			<%= f.hidden_field :payment_method, value: @order.payment_method %>
 		</div>
+		<div class="field">
+		  <h3><%= f.label :deadline, "締め切り" %></h3>
+		  <p class="text-center h4 text-danger"><%= @order.deadline %></p>
+		  <%= f.hidden_field :deadline, value: @order.deadline %>
+		</div>
 			<%= f.hidden_field :name, value: @order.name %>
-		<div class="actions text-center">
+		<div class="actions text-center my-5">
 			<%= f.submit "注文を確定する", class: "btn btn-primary submit_to_create_order" %>
 		</div>
 	<% end %>

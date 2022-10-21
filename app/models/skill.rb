@@ -1,6 +1,8 @@
 class Skill < ApplicationRecord
   has_many :skill_genres, dependent: :destroy
   has_many :genres, through: :skill_genres, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  has_many :order_details
   has_one_attached :image
 
   validates :name, presence: true, uniqueness: true
