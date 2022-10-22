@@ -14,3 +14,106 @@
  *= require_self
  */
 
+.button0 a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 1em 2em;
+  height: 80px;
+  width: 300px;
+  color: #14171a;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #cccccc;
+  transition: 0s;
+  box-sizing: border-box;
+  text-decoration: none
+}
+/*box-sizing: border-box;で、「paddingとborderを幅と高さに含める」指定を追加することでエラーは回避されます。*/
+
+.button0 a::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: -7px;
+  width: 100%;
+  height: 2px;
+  background-color: #bbbbbb;
+  transition: 0.2s ease 0s;
+}
+
+.button0 a::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  right: -7px;
+  width: 2px;
+  height: 100%;
+  background-color: #bbbbbb;
+  transition: 0.2s ease 0.2s;
+}
+
+.button0 a:hover::before {
+  width: 0%;
+}
+
+.button0 a:hover::after {
+  height: 0%;
+}
+
+.button0 a:hover {
+  text-decoration: none;
+  background-color: #a0c4d3;
+}
+
+.button_edit a {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 1em 2em;
+  height: 80px;
+  width: 300px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #cccccc;
+  border-radius: 50vh;
+  transition: 0s;
+  box-sizing: border-box;
+}
+
+.button_edit a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: #f2f2f2;
+  border-radius: 50vh;
+}
+
+.button_edit a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #333333;
+  border-right: 3px solid #333333;
+  box-sizing: border-box;
+}
+
+.button_edit a:hover {
+  text-decoration: none;
+  background-color: #cccccc;
+}
+
+.followers div:hover {
+  background-color: #d9efff;
+}

@@ -3,23 +3,22 @@
     <div class="row justify-content-center">
       <h1 class="font-weight-normal mt-5 mb-5">フォロー一覧</h1>
     </div>
-    <div class="row justify-content-center">
+    <div class="followers justify-content-center">
       <% @users.each do |user| %>
-      <div class="one-post card w-100">
-        <%= link_to profile_path(user) do %>
-        <div class="col-md-12">
-          <%= image_tag user.get_profile_image(100,100), class: "rounded-circle font-weight-bold shadow-sm" %>
-          <span class="h4 mx-3"><%= user.user_name %></span>
-          <span class="mx-5"><%= user.bio %></span>
-            <% if user.is_editor_i18n == "編集会員" %>
-              <span class="mx-5"><%= "#{user.works.count} 実績" %></span>
-              <!--レビューカウント/elseも記入-->
+      <div class="one-post w-100">
+        <div class="row">
+          <div class="col-2">
+            <%= link_to profile_path(user) do %>
+              <%= image_tag user.get_profile_image(100,100), class: "rounded-circle font-weight-bold shadow-sm" %>
             <% end %>
+          </div>
+          <div class="col">
+            <h4><%= user.user_name %></h4>
+            <p><%= user.bio %></p>
+          </div>
         </div>
-        <% end %>
       </div>
-      <% end %>
-    </div>
+    <% end %>
     <%= paginate @users %>
   </div>
 </div>

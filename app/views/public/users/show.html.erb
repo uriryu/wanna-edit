@@ -8,21 +8,21 @@
     <% if @user.email == 'guest@example.com'%>
       <span class="text-danger">ゲストユーザーはユーザー情報の編集ができません。</span>
     <% else %>
-      <%= link_to "編集する", edit_information_path, class: "btn btn-success m-2" %>
-      <%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary m-2" %>
+      <div class="row">
+        <span class="button_edit col-md-6"><%= link_to "編集する", edit_information_path, class: "btn btn-success" %></span>
+        <span class="button_edit col-md-6"><%= link_to "パスワードを変更する",  edit_user_registration_path, class: "btn btn-primary" %></span>
+      </div>
     <% end %>
   </h3>
-  <table class="mx-auto">
+  <div class="text-center my-4">
+    <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle font-weight-bold shadow-sm" %>
+  </div>
+  <table class="table table-bordered">
     <thead>
-      <th></th>
-      <th></th>
       <th></th>
       <th></th>
     </thead>
     <tbody>
-      <tr>
-        <td><%= image_tag @user.get_profile_image(100,100), class: "rounded-circle font-weight-bold shadow-sm" %></td>
-      </tr>
       <tr>
         <td>Name</td>
         <td><%= @user.user_name %></td>
@@ -45,30 +45,27 @@
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td>
-          <div class="d-flex">
-            <%= link_to follows_user_path(@user) do %>
-              <h6><%= @following_users.count %> Follow</h6>
-            <% end %>&nbsp;&nbsp;
-            <%= link_to followers_user_path(@user) do %>
-              <h6><%= @follower_users.count %> Follower</h6>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= link_to "お気に入りの実績", favorites_path(@user) %>
-        </td>
-      </tr>
     </tbody>
   </table>
-
-      <div>
-        <%= render 'mywork', user: @user, skills: @skills %>
-      </div>
+  <div class="row offset-md-5 my-2">
+    <div class="col-2">
+      <%= link_to follows_user_path(@user) do %>
+        <h5><%= @following_users.count %> Follow</h5>
+      <% end %>&nbsp;&nbsp;
     </div>
+    <div class="col-2">
+      <%= link_to followers_user_path(@user) do %>
+        <h5><%= @follower_users.count %> Follower</h5>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <h5><%= link_to "お気に入りの実績", favorites_path(@user) %></h5>
+  </div>
+
+  <%= render 'mywork', user: @user, skills: @skills %>
+
   <div class="flex">
     <!--%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary ml2" %>-->
   </div>

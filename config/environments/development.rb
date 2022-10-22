@@ -79,6 +79,8 @@ Rails.application.configure do
   config.hosts << "924b59306aa0443a89adeba384cb97d1.vfs.cloud9.ap-northeast-1.amazonaws.com"
   config.web_console.allowed_ips = '0.0.0.0/0'
 
+  # cssがロードされないので追記↓
+  config.assets.digest = false
   #config.hosts.clear
   #どんなホストからでもアクセスできるようにする。後々変えること。
 
