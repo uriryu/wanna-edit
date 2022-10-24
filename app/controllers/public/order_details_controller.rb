@@ -1,4 +1,4 @@
-class Admin::OrderDetailsController < ApplicationController
+class Public::OrderDetailsController < ApplicationController
   def update
     @order = Order.find(params[:order_id])
     @order_detail = @order.order_details.find(params[:id])
@@ -8,7 +8,7 @@ class Admin::OrderDetailsController < ApplicationController
         @order.preparing!
         # in_production preparingはmaking_statusのenum設定したもの。
     end
-      redirect_to admin_order_path(@order)
+      redirect_to orders_path
   end
 
   private

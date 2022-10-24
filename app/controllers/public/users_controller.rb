@@ -19,6 +19,7 @@ class Public::UsersController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
+    @skills = @user.skills
     @following_users = @user.following_user
     @follower_users = @user.follower_user
   end

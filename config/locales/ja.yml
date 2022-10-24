@@ -25,12 +25,14 @@
           in_production: '製作中'
           preparing: '準備中'
           completed: '依頼完了'
+          cancel: 'キャンセル'
       order_detail:
         making_status:
           cannot_start: '着手不可'
           waiting_start: '製作待ち'
           in_production: '製作中'
           completed: '製作完了'
+          cancel: 'キャンセル'
     activerecord:
       errors:
         messages:

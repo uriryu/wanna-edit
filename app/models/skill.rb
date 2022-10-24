@@ -1,4 +1,5 @@
 class Skill < ApplicationRecord
+  belongs_to :user
   has_many :skill_genres, dependent: :destroy
   has_many :genres, through: :skill_genres, dependent: :destroy
   has_many :cart_items, dependent: :destroy

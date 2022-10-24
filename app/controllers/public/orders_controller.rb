@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :ensure_cart_items, only: [:new, :confirm, :create, :error]
 
   def new
@@ -29,17 +29,35 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.includes(:order_details, :skills).page(params[:page]).reverse_order
+    @order = Order.find_by(params[:order_id])
+    @order_details = @order.order_details.includes(:skill)
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+        @orders = @user.orders.page(params[:page]).reverse_order
+      elsif params[:created_at] == "today"
+        @orders = Order.ordered_today.includes(:user).page(params[:page]).reverse_order
+      else
+        @orders = Order.includes(:user).page(params[:page]).reverse_order
+      end
   end
 
   def show
     @order = current_user.orders.find(params[:id])
-    @order_details = @order.order_details.includes(:skill)
+    @order_detail = @order.order_details.includes(:skill)
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params) && @order.confirm_deposit?
+      @order.order_details.update_all(making_status: 1)
+    end
+    redirect_to orders_path
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:name, :payment_method, :deadline)
+    params.require(:order).permit(:name, :payment_method, :deadline, :status)
   end
 
   def ensure_cart_items

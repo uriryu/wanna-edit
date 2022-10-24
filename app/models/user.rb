@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :skills
   has_many :reviews, dependent: :destroy
   has_many :works, dependent: :destroy
   has_many :favorites, dependent: :destroy

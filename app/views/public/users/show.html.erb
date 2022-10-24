@@ -47,8 +47,9 @@
       </tr>
     </tbody>
   </table>
-  <div class="row offset-md-5 my-2">
-    <div class="col-2">
+  <div class="row mx-2 my-2">
+    <div class="col-3"><%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary" %></div>
+    <div class="col-1">
       <%= link_to follows_user_path(@user) do %>
         <h5><%= @following_users.count %> Follow</h5>
       <% end %>&nbsp;&nbsp;
@@ -58,15 +59,11 @@
         <h5><%= @follower_users.count %> Follower</h5>
       <% end %>
     </div>
+    <div class="col-3">
+      <h5><%= link_to "お気に入りの実績", favorites_path(@user) %></h5>
+    </div>
   </div>
 
-  <div>
-    <h5><%= link_to "お気に入りの実績", favorites_path(@user) %></h5>
-  </div>
 
   <%= render 'mywork', user: @user, skills: @skills %>
-
-  <div class="flex">
-    <!--%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary ml2" %>-->
-  </div>
 </div>

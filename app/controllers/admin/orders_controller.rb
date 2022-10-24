@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   before_action :ensure_order, only: [:show, :update]
-  
+
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
@@ -17,14 +17,14 @@ class Admin::OrdersController < ApplicationController
     @order_details = @order.order_details.includes(:skill)
     @user = @order.user
   end
-  
+
   def update
     if @order.update(order_params) && @order.cunfirm_deposit?
       @order.order_details.update_all(making_status: 1)
     end
-    redirect_to admin_order_path(@order)
+    redirect_to orders_path
   end
-  
+
   private
   def order_params
     params.require(:order).permit(:status)
