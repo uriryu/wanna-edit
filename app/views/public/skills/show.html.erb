@@ -6,13 +6,8 @@
       <%= image_tag @skill.get_image, id: "img_prev" %>
     </div>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+  <table class="table table-bordered">
+    <thead></thead>
     <tbody>
       <tr>
         <td>商品名</td>
@@ -43,6 +38,34 @@
             <span class="text-danger">販売停止中</span>
           <% end %>
         </td>
+      </tr>
+      <tr>
+        <td>評価</td>
+        <td>
+          <%= link_to work_reviews_path(work_id: @work.id) do %>
+            <%= @work.avg_score %>点 (<%= @work.reviews.count %>件のレビュー)
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>評価平均</td>
+        <td>
+          <% @reviews.each do |review| %>
+          <div id="star<%= review.id %>"></div>
+            <script>
+              $('#star<%= review.id %>').empty();
+              $('#star<%= review.id %>').raty({
+                size  :36,
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= review.reputation %>,
+              });
+            </script>
+          </td>
+        <% end %>
       </tr>
     </tbody>
   </table>

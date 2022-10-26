@@ -10,6 +10,8 @@ class Skill < ApplicationRecord
   validates :body, presence: true
   validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
 
+  scope :where_genre_active, -> { joins(:genre).where(genres: { is_active: true }) }
+
   def get_image(*size)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')
@@ -34,5 +36,15 @@ class Skill < ApplicationRecord
     elsif !image.blob.content_type.in?(%('image/jpeg image/png'))
       errors.add(:image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
     end
+  end
+
+  def self.recommended
+    recommends = []
+    active_genres = Genre.only_active.includes(:skills)
+    active_genres.each do |genre|
+      skill = genre.skills.last
+      recommends << skill if skill
+    end
+    recommends
   end
 end

@@ -1,21 +1,20 @@
 <div class="container">
-  <h1>レビュー一覧</h1>
-  <%= link_to "レビューを投稿する", work_path(@work) %>
+  <h1 class="my-5 text-center">レビュー一覧</h1>
+  <span class="button0"><%= link_to "レビューを投稿する", work_path(@work) %></span>
 
-  <div>
-    <p>タイトル</p>
-    <%= @work.title %>
+  <div class="my-5">
+    <h4 class="text-center">タイトル</h4>
+    <p class="text-center h3"><%= @work.title %></p>
   </div>
-  <div>
+  <div class="text-center">
     <%= image_tag @work.image, size: '320x180', class: "image-responsive" %>
   </div>
 
-  <div>
+  <div class="m-5">
     <h3><%= @work.avg_score %>点 (<%= @work.reviews.count %>件のレビュー)</h3>
   </div>
 
   <table class="table">
-
     <thead>
       <tr>
         <th>ユーザー名</th>
@@ -46,7 +45,9 @@
         </td>
         <td>
           <% if user_signed_in? && current_user.id == review.user_id %>
-            <%= link_to "編集", edit_work_review_path(@work.id, review.id), class: "btn btn-success" %>
+            <span>
+              <%= link_to "編集", edit_work_review_path(@work.id, review.id), class: "btn btn-success" %>
+            </span>
 
           <% end %>
         </td>

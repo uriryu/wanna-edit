@@ -24,6 +24,9 @@ class Public::SkillsController < ApplicationController
   end
 
   def show
+    @work = Work.find(params[:id])
+    @reviews = @work.reviews
+    @review = Review.find_by(params[:id])
     @cart_item = CartItem.new
   end
 
