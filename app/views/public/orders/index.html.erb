@@ -1,6 +1,5 @@
-<h1>Public::Orders#index</h1>
-<div>
-  <h2>注文履歴一覧</h2>
+<div class="container">
+  <h2 class="mt-5">注文履歴一覧</h2>
     <table class="table mb-5">
       <thead>
         <tr>
@@ -33,7 +32,8 @@
       </tbody>
     </table>
   <% if current_user.is_editor_i18n == "編集会員" %>
-    <h2>受注履歴一覧</h2>
+    <h2 class="mt-5">受注履歴一覧</h2>
+    <% if @order_details.first %>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -62,7 +62,7 @@
             </td>
             <td>
               <% @order_details.each do |order_detail| %>
-					    	<%= form_with(model: order_detail, url: order_order_detail_path(order_id: order.id, id: order_detail.id)) do |f| %>
+					      <%= form_with(model: order_detail, url: order_order_detail_path(order_id: order.id, id: order_detail.id)) do |f| %>
 					  	    <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
 					  	    <%= f.submit "更新", class: "btn btn-primary" %>
 					  	  <% end %>
@@ -72,7 +72,9 @@
         <% end %>
       </tbody>
     </table>
-
+	  <% else %>
+      <h3>まだ注文が入っていません。</h3>
+    <% end %>
   <% end %>
   <%= paginate @orders %>
 </div>

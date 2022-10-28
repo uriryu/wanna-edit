@@ -16,6 +16,7 @@
  .nav-item a:hover {
     background-color: #0FF;
     color: #FFF;
+    border-radius: 3px;
   }
 
 .text-invalid {
@@ -196,6 +197,7 @@
   height: 5px;
   border-top: 3px solid #333333;
   border-right: 3px solid #333333;
+  border-radius: 50vh;
   box-sizing: border-box;
 }
 
@@ -210,4 +212,119 @@
 
 table {
   text-align: center;
+}
+
+.line__container {
+  padding: 0;
+  background: #7494c0;
+  overflow: hidden;
+  /*max-width: 400px;*/
+  margin: 0px auto;
+  font-size: 100%;
+  width: 80%;
+	height: 80%;
+}
+/* タイトル部分 */
+.line__container .line__title {
+  background: #273246;
+  padding: 10px;
+  text-align: center;
+  font-size: 150%;
+  color: #ffffff;
+}
+/* 会話部分 */
+.line__container .line__contents {
+  padding: 10px;
+  overflow: hidden;
+  line-height: 135%;
+}
+
+
+.line__container .scroll {
+  height: 500px;
+  overflow-y: scroll;
+}
+/* 相手の会話 */
+.line__container .line__left {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+    max-width: 80%;
+    clear: both;
+}
+/* アイコン画像 */
+.faceicon img{
+    border-radius: 50%;
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+}
+.line__container .line__left {
+  margin-left: 20px;
+}
+.line__left-text {
+  margin-left: 20px;
+}
+
+.line__container .line__left .name {
+  font-size: 80%;
+  color: #ffffff;
+}
+/* コメントエリア */
+.line__container .line__left .text {
+  margin: 0;
+  position: relative;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  display: inline-block;
+}
+/* 吹き出し */
+.line__container .line__left .text::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -10px;
+  top: 10px;
+  border-right: 20px solid #ffffff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+
+}
+
+/* 自分の会話 */
+.line__container .line__right {
+    position: relative;
+    display: block;
+    margin: 5px 0;
+    max-width: 75%;
+    float: right;
+    margin-right: 20px;
+    clear: both;
+}
+
+/* コメントエリア */
+.line__container .line__right .text {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #8de055;
+  margin: 0;
+  margin-left: 80px;
+}
+
+/* 吹き出し */
+.line__container .line__right .text::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: -10px;
+  top: 10px;
+  border-left: 20px solid #8de055;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }

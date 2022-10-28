@@ -1,0 +1,17 @@
+<div class="container">
+  <table class="table table-bordered">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td>
+          <% @entries.each do |entry| %>
+            <%= link_to room_path(entry.room_id) do %>
+              <div class="my-3"><%= entry.user.user_name %>さんとのメッセージ</div>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

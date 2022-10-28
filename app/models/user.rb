@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
   has_many :cart_items, dependent: :destroy
   has_many :orders
+  has_many :entries, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

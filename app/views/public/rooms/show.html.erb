@@ -1,0 +1,29 @@
+<div class="line__container overflow-auto" id="area">
+  <div class="line__title"><%= "#{@another_entry.user.user_name}" %>さんとのメッセージ</div>
+  <div class="line_contents scroll">
+    <% @messages.each do |m| %>
+      <% if m.user_id == current_user.id %>
+      <div class="line__right">
+        <div class="text"><%= m.body %></div>
+      </div>
+      <% else %>
+      <div class="line__left">
+        <p class="faceicon"><%= image_tag m.user.profile_image, size: "100x100" %></p>
+        <div class="line_left-text">
+          <div class="name"><%= m.user.user_name %></div>
+          <div class="text"><%= m.body %></div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="chat-form-box">
+  <%= form_with model: @messages, url: messages_path do |f| %>
+    <div class="row mx-1">
+      <%= f.text_field :body, class: "form-control col" %>
+      <%= f.hidden_field :room_id, :value => @room.id %>
+      <%= f.submit "▷", class: "btn btn-primary col-sm-1" %>
+    </div>
+  <% end %>
+  </div>
+</div>
