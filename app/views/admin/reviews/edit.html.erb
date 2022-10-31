@@ -1,2 +1,18 @@
-<h1>Admin::Reviews#edit</h1>
-<%= link_to "削除する", admin_user_review_path, method: :delete, class: "btn btn-danger" %>
+<div class="container">
+  <h4 class="m-5"><%= @review.body %></h4>
+  <p class="m-5"><%= link_to "削除する", admin_user_review_path, method: :delete, class: "btn btn-danger" %></p>
+  <div>
+      <div class="m-5">
+        <h3>表示設定</h3>
+       <p>誹謗中傷等があった場合、削除もしくは非表示で書いた人へ対応する。</p>
+      <%= form_with model: @review, url: admin_user_review_path(@review), local: true do |f| %>
+        <%= render 'layouts/error_messages', resource: @review %>
+        <%= f.radio_button :check, false %>
+	      <%= f.label :check, "表示", class: "text-active" %>
+        <%= f.radio_button :check, true %>
+	      <%= f.label :check, "非表示", class: "text-invalid" %>
+        <%= f.submit "更新", class: "btn btn-primary m-2"%>
+      <% end %>
+      </div>
+  </div>
+</div>

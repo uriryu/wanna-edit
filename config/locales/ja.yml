@@ -23,7 +23,6 @@
           waiting_deposit: '入金待ち'
           confirm_deposit: '入金確認'
           in_production: '製作中'
-          preparing: '準備中'
           completed: '依頼完了'
           cancel: 'キャンセル'
       order_detail:

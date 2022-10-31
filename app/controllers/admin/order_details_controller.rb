@@ -5,7 +5,7 @@ class Admin::OrderDetailsController < ApplicationController
     if @order_detail.update(order_detail_params) && @order_detail.in_production?
       @order.in_production!
     elsif @order.are_all_details_completed?
-        @order.preparing!
+        @order.completed!
         # in_production preparingはmaking_statusのenum設定したもの。
     end
       redirect_to admin_order_path(@order)

@@ -3,6 +3,7 @@ class Public::HomesController < ApplicationController
     @genres = Genre.only_active.includes(:skills)
     @skills = Skill.recommended
     @skill = Skill.find_by(params[:id])
+    @works = Work.page(params[:page])
   end
 
   def search

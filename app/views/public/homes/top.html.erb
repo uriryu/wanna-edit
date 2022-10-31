@@ -1,35 +1,44 @@
 <div class="container">
   <div class="row">
-  <div class="sidebar col-2 mt-5">
-    <h3>ジャンル一覧</h3>
-    <% @genres.each do |genre| %>
-      <%= link_to genre.name, skills_path(genre_id: genre.id) %>
-    <% end %>
-  </div>
-  <div class="content col-9 mt-4">
-    <div class="mv">
-      <p>
-        ようこそ!Wannaeditへ<br>
-        このサイトは、編集依頼をしたり、<br>
-        交流するサイトになります。<br>
-        依頼には会員登録が必要になります。
-      </p>
+    <div class="sidebar col-2 mt-5">
+      <h3>ジャンル一覧</h3>
+      <% @genres.each do |genre| %>
+        <%= link_to genre.name, skills_path(genre_id: genre.id) %>
+      <% end %>
     </div>
-    <h3>おすすめ商品</h3>
-    <div class="skills">
-      <% @skills.each do |skill| %>
-        <%= link_to skill_path(skill) do %>
-          <%= image_tag skill.get_image %>
-          <h5><%= skill.name %></h5>
-          <p>
-            <% @skill.genres.each do |genre| %>
-              <span>ジャンル: <%= genre.name %></span>
-            <% end %>
-          </p>
-          <p>税込: <%= skill.with_tax_price %> 円</p>
+    <div class="content col-9 mt-4">
+      <div class="mv">
+        <p>
+          ようこそ!Wannaeditへ<br>
+          このサイトは、編集依頼をしたり、<br>
+          交流するサイトになります。<br>
+          依頼には会員登録が必要になります。
+        </p>
+      </div>
+      <h3>おすすめ商品</h3>
+      <div class="skills">
+        <% @skills.each do |skill| %>
+          <%= link_to skill_path(skill) do %>
+            <%= image_tag skill.get_image %>
+            <h5><%= skill.name %></h5>
+            <p>
+              <% @skill.genres.each do |genre| %>
+                <span>ジャンル: <%= genre.name %></span>
+              <% end %>
+            </p>
+            <p>税込: <%= skill.with_tax_price %> 円</p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex-column mx-2">
+      <h3><%= link_to "実績一覧", works_path %></h3>
+      <% @works.each do |work| %>
+        <%= link_to work_path(work) do %>
+          <%= image_tag work.get_image %>
+          <h5><%= work.title %></h5>
         <% end %>
       <% end %>
     </div>
   </div>
-</div>
 </div>

@@ -27,7 +27,12 @@
     <tbody>
       <tr>
         <td><%= review.user.user_name %></td>
-        <td><%= review.body %></td>
+        <td>
+          <% if review.check == false %>
+            <%= review.body %>
+          <% else %>
+          <% end %>
+        </td>
         <td>
           <div id="star<%= review.id %>"></div>
           <script>

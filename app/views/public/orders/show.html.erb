@@ -1,4 +1,3 @@
-<h1>Public::Orders#show</h1>
 <div class="container">
   <h2>注文履歴詳細</h2>
   <caption class="fz18 text-left">注文情報</caption>
@@ -34,6 +33,7 @@
     <table class="order_details table table-bordered m-3">
       <thead>
         <tr>
+          <th>作成者</th>
           <th>商品</th>
           <th>商品名</th>
           <th>単価(税込)</th>
@@ -45,13 +45,14 @@
         <% @order.order_details.includes(:skill).each do |order_detail| %>
           <% skill = order_detail.skill %>
           <tr>
+            <td class="align-middle"><%= link_to skill.user.user_name, profile_path(skill.user_id) %></td>
             <td>
               <%= image_tag skill.get_image, format: "jpeg", fallback: "no_image.png", class: "cart_item_image" %>
             </td>
-            <td><%= link_to skill.name, skill_path(skill) %></td>
-            <td class="text-right"><%= order_detail.price %> 円</td>
-            <td class="text-center"><%= order_detail.amount %></td>
-            <td class="text-right"><%= order_detail.subtotal %> 円</td>
+            <td class="align-middle"><%= link_to skill.name, skill_path(skill) %></td>
+            <td class="align-middle"><%= order_detail.price %> 円</td>
+            <td class="align-middle"><%= order_detail.amount %></td>
+            <td class="align-middle"><%= order_detail.subtotal %> 円</td>
           </tr>
         <% end %>
       </tbody>

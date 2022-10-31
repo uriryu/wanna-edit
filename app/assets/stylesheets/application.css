@@ -328,3 +328,32 @@ table {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
+
+caption {
+  caption-side: top;
+}
+
+.admin_top-txt {
+  padding-top: 30px;
+  font-size: 30px;
+}
+.admin_top-txt a {
+    font-weight: bold;
+}
+
+.section-ttl {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 50px;
+  margin-bottom: 30px;
+}
+
+.inner {
+  width: 840px;
+  margin: 0 auto;
+}
+
+#thanks {
+  padding-top: 100px;
+}

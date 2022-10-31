@@ -1,7 +1,6 @@
-<h1>Admin::Skills#show</h1>
-<div class="container">
+<div class="container mt-5">
   <h2>商品詳細</h2>
-  <div>
+  <div class="text-center">
     <%= image_tag @skill.get_image, id: "img_prev" %>
   </div>
   <table class="table">
@@ -44,7 +43,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="flex align-center pl5">
+  <div class="flex text-center">
     <%= link_to "編集する", edit_admin_skill_path(@skill), class: "btn btn-success" %>
   </div>
 </div>

@@ -1,3 +1,7 @@
-<h1>Admin::Homes#top</h1>
-<p>管理者Top</p>
-<p>検索機能をつけるためにhomesコントローラをつくった</p>
+<section class="inner">
+    <h2 class="section-ttl">管理者TOP</h2>
+    <h1 class="admin_top-txt">
+      本日の注文件数
+      <%= link_to @count, admin_orders_path(created_at: 'today'), class: "underline" %>件
+    </h1>
+</section>

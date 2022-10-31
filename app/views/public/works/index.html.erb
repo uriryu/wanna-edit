@@ -1,14 +1,36 @@
 <div class="container">
-  <div>
-    <% @works.each do |work| %>
-      <p><%= link_to work.title, work_path(work.id) %></p>
-      <p><%= image_tag work.image, size: '320x180' %></p>
-      <p><%= work.body %></p>
-      <p class="favorites_buttons_<%= work.id %>">
-        <!--更新する箇所を指定するためidをつける。-->
-        <%= render "public/favorites/favorite", work: work %>
-        <!--eachメソッド内のrender処理の為、インスタンス変数は存在しない。-->
-      </p>
-    <% end %>
+  <div class="row mx-2">
+    <table class="table">
+      <thead></thead>
+      <tbody>
+        <tr>
+          <% @works.each do |work| %>
+          <td class="align-middle">
+             <p><%= link_to work.title, work_path(work.id) %></p>
+          </td>
+          <td class="align-middle">
+            <p><%= work.body %></p>
+          </td>
+          <td class="align-middle">
+            <p><%= image_tag work.image, size: '320x180' %></p>
+          </td>
+          <td class="align-middle">
+            <p class="favorites_buttons_<%= work.id %>">
+            <!--更新する箇所を指定するためidをつける。-->
+            <%= render "public/favorites/favorite", work: work %>
+            <!--eachメソッド内のrender処理の為、インスタンス変数は存在しない。-->
+            </p>
+          </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
   </div>
 </div>

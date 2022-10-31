@@ -11,6 +11,9 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def update
+    @user = @review.user
+    @review.update(review_params)
+    redirect_to admin_user_reviews_path(user_id: @user.id)
   end
 
   def destroy
@@ -23,7 +26,7 @@ class Admin::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:work_id, :review_id, :reputation, :body)
+    params.require(:review).permit(:work_id, :review_id, :reputation, :body, :check)
   end
 
   def ensure_review

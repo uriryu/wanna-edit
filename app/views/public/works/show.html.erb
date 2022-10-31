@@ -1,7 +1,7 @@
 <div class="container">
-  <h2>実績詳細</h2>
+  <h2 class="m-4">実績詳細</h2>
   <div class="flex">
-    <div>
+    <div class="text-center my-3">
       <% if @work.image.attached? %>
         <%= image_tag @work.image, size: '320x180', class: "img-responsive" %><br>
       <% else %>
@@ -37,6 +37,16 @@
           <tr>
             <td>URL</td>
             <td><%= text_url_to_link(h(@work.url)).html_safe %></td>
+          </tr>
+          <tr>
+            <td>いいね</td>
+            <td>
+              <p class="favorites_buttons_<%= @work.id %>">
+              <!--更新する箇所を指定するためidをつける。-->
+              <%= render "public/favorites/favorite", work: @work %>
+              <!--eachメソッド内のrender処理の為、インスタンス変数は存在しない。-->
+            </p>
+            </td>
           </tr>
         </tbody>
       </table>

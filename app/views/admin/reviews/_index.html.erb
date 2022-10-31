@@ -1,14 +1,16 @@
 <div class="container">
   <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+    <thead></thead>
     <% @reviews.each do |review| %>
     <tbody>
       <tr>
+        <td>
+          <% if review.check == false %>
+            <p class="text-active">表示</p>
+          <% else %>
+            <p class="text-invalid">非表示</p>
+          <% end %>
+        </td>
         <td><%= review.body %></td>
         <td><%= link_to "編集する", edit_admin_user_review_path(user.id, review.id), class: "btn btn-success" %></td>
       </tr>

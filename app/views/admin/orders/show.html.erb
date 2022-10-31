@@ -1,8 +1,8 @@
-<h1>Admin::Orders#show</h1>
-<div>
+<div class="container">
   <h2>注文履歴詳細</h2>
   <table class="table">
     <caption>注文情報</caption>
+    <!--captionはtableの一番最初に入れること!-->
     <thead>
       <tr>
         <th></th>
@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td>購入者</td>
-        <td><%= link_to @user.name, admin_user_path(@user), class: "underline" %></td>
+        <td><%= link_to @user.user_name, admin_user_path(@user), class: "underline" %></td>
       </tr>
       <tr>
         <td>支払方法</td>
@@ -28,6 +28,7 @@
           <%= form_with model:@order, url: admin_order_path(@order) do |f| %>
             <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
             <%= f.submit "更新", class: "btn btn-primary" %>
+          <% end %>
         </td>
       </tr>
     </tbody>
@@ -74,7 +75,7 @@
       <tbody>
         <tr>
           <td>商品合計</td>
-          <td><%= @order_details.sum(&:subtotal) %>円</td>
+          <td><%= @order.order_details.sum(&:subtotal) %>円</td>
         </tr>
         <tr>
           <td>総額</td>
