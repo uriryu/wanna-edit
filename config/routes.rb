@@ -36,14 +36,15 @@ Rails.application.routes.draw do
     get 'users/:id/favorites' => 'users#favorites', as: 'favorites'
     get 'users/information/edit' => 'users#edit', as: 'edit_information'
     patch 'users/information' => 'users#update', as: 'update_information'
-    get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
+    get 'users/information/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/confirm' => 'orders#error'
     get 'orders/thanks' => 'orders#thanks', as: 'thanks'
-
+# users/:id と users/unsubscribeが存在した場合:idはなんでも入るのでunsubscribeが入ってしまう。
+# profileページが表示され、退会ページが表示されない。なのでinformationを挟むことにした。
     resources :skills, only: [:new, :create, :index, :show, :edit, :update] do
       resources :cart_items, only: [:create, :update, :destroy]
     end
