@@ -6,7 +6,7 @@
         <%= link_to genre.name, skills_path(genre_id: genre.id) %>
       <% end %>
     </div>
-    <div class="content col-9 mt-4">
+    <div class="content col-9">
       <div class="mv">
         <p>
           ようこそ!Wannaeditへ<br>
@@ -17,7 +17,7 @@
       </div>
       <h3>おすすめ商品</h3>
       <div class="skills">
-        <% @skills.each do |skill| %>
+        <% @skills.shuffle[0..9].each do |skill| %>
           <%= link_to skill_path(skill) do %>
             <%= image_tag skill.get_image %>
             <h5><%= skill.name %></h5>
@@ -29,6 +29,7 @@
             <p>税込: <%= skill.with_tax_price %> 円</p>
           <% end %>
         <% end %>
+        <%= paginate @skills %>
       </div>
     </div>
     <div class="flex-column mx-2">

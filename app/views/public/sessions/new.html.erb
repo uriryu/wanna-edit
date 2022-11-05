@@ -3,11 +3,6 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field my-3">
-    <%= f.label :user_name %><br />
-    <%= f.text_field :user_name %>
-  </div>
-
-  <div class="field my-3">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

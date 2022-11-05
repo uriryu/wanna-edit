@@ -6,7 +6,7 @@ class Admin::OrdersController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
       @orders = @user.orders.page(params[:page]).reverse_order
-    elsif params[:create_at] == "today"
+    elsif params[:created_at] == "today"
       @orders = Order.ordered_today.includes(:user).page(params[:page]).reverse_order
     else
       @orders = Order.includes(:user).page(params[:page]).reverse_order

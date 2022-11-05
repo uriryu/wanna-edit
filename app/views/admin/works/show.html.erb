@@ -38,6 +38,7 @@
     </tbody>
   </table>
   <div class="text-center">
+    <%= link_to "編集", edit_admin_work_path(@work.id), class: "btn btn-primary" %>
     <%= link_to "削除", admin_work_path(@work.id), method: :delete, "data-confirm" => "#{@work.title}を削除します。よろしいでしょうか？", class: "btn btn-danger" %>
   </div>
 </div>

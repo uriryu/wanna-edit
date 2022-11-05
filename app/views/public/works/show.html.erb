@@ -50,7 +50,7 @@
           </tr>
         </tbody>
       </table>
-      <div>
+      <div class="text-center">
         <% if user_signed_in? && current_user.id == @work.user_id %>
           <%= link_to "編集", edit_work_path(@work), class: "btn btn-success" %>
         <% end %>
@@ -58,6 +58,8 @@
     </div>
   </div>
   <div>
-    <%= render 'public/reviews/form', review: @review, work: @work %>
+    <% if user_signed_in? %>
+      <%= render 'public/reviews/form', review: @review, work: @work %>
+    <% end %>
   </div>
 </div>

@@ -12,6 +12,10 @@
     </thead>
     <tbody>
       <tr>
+        <td>ユーザー名</td>
+        <td><%= link_to @skill.user.user_name, admin_user_path(@skill.user.id) %></td>
+      </tr>
+      <tr>
         <td>商品名</td>
         <td><%= @skill.name %></td>
       </tr>

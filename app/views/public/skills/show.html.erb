@@ -1,8 +1,8 @@
 <div class="container">
   <h2>商品詳細</h2>
   <div class="flex">
-    <div class="image_field text-center">
-      <%= image_tag @skill.get_image, id: "img_prev" %>
+    <div class="image_field text-center my-4">
+      <%= image_tag @skill.get_image, id: "img_prev", size: "200x200" %>
     </div>
   </div>
   <table class="table table-bordered">
@@ -39,60 +39,38 @@
         </td>
       </tr>
       <tr>
-        <td>評価</td>
-        <td>
-          <%= link_to work_reviews_path(work_id: @work.id) do %>
-            <%= @work.avg_score %>点 (<%= @work.reviews.count %>件のレビュー)
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>評価平均</td>
-        <td>
-          <% @reviews.each do |review| %>
-          <div id="star<%= review.id %>"></div>
-            <script>
-              $('#star<%= review.id %>').empty();
-              $('#star<%= review.id %>').raty({
-                size  :36,
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                half: true,
-                readOnly: true,
-                score: <%= review.reputation %>,
-              });
-            </script>
+        <% if user_signed_in? %>
+          <% if @skill.user_id == current_user.id %>
+          <td></td>
+          <td>
+            <%= link_to "編集する", edit_skill_path(@skill), class: "btn btn-success" %>
           </td>
+          <% end %>
         <% end %>
       </tr>
     </tbody>
   </table>
+
   <div class="text-center">
     <% if user_signed_in? %>
-					<% cart_item = current_user.has_in_cart(@skill) %>
-					<% if cart_item %>
-						<%= form_with model: [@skill, cart_item] do |f| %>
-							<p>こちらの商品は、既にカートに入っています。</p>
-							<%= f.select :amount, [*(1..10)] %>
-							<%= f.submit "数量変更", class: "btn btn-primary" %>
-						<% end %>
-					<% elsif @skill.is_active? %>
-						<%= form_with model: [@skill, @cart_item] do |f| %>
-							<p>数量を選択して下さい。</p>
-							<%= f.select :amount, [*(1..10)], {selected: 1} %>
-							<%= f.submit "カートに入れる", class: "btn btn-primary" %>
-						<% end %>
-					<% else %>
-						<p class="bold">こちらの商品は、現在販売停止中です。</p>
-					<% end %>
-				<% else %>
-					<p>カート機能をご利用いただくには、<br><%= link_to "こちら", new_customer_registration_path, class: "underline" %>から新規登録を行なってください。</p>
+			<% cart_item = current_user.has_in_cart(@skill) %>
+			<% if cart_item %>
+				<%= form_with model: [@skill, cart_item] do |f| %>
+					<p>こちらの商品は、既にカートに入っています。</p>
+					<%= f.select :amount, [*(1..10)] %>
+					<%= f.submit "数量変更", class: "btn btn-primary" %>
 				<% end %>
+		  <% elsif @skill.is_active? %>
+				<%= form_with model: [@skill, @cart_item] do |f| %>
+					<p>数量を選択して下さい。</p>
+					<%= f.select :amount, [*(1..10)], {selected: 1} %>
+					<%= f.submit "カートに入れる", class: "btn btn-primary" %>
+				<% end %>
+			<% else %>
+				<p class="bold">こちらの商品は、現在販売停止中です。</p>
+			<% end %>
+		<% else %>
+			<p>カート機能をご利用いただくには、<br><%= link_to "こちら", new_user_registration_path, class: "underline" %>から新規登録を行なってください。</p>
+		<% end %>
   </div>
-  <% if @skill.user_id == current_user %>
-    <div class="flex text-center pl5">
-      <%= link_to "編集する", edit_skill_path(@skill), class: "btn btn-success" %>
-    </div>
-  <% end %>
 </div>

@@ -1,10 +1,6 @@
 <div class="container">
-  <table class="mx-auto my-5">
-    <thead>
-      <th></th>
-      <th></th>
-      <th></th>
-    </thead>
+  <table class="mx-auto my-5 table">
+    <thead></thead>
     <tbody>
       <tr>
         <td><%= image_tag @user.get_profile_image(100,100), class: "rounded-circle font-weight-bold shadow-sm" %></td>
@@ -33,40 +29,42 @@
       </tr>
     </tbody>
   </table>
-  <p>
-    <% if current_user != @user %>
-      <% if current_user.following?(@user) %>
-        <%= link_to 'フォロー外す', user_relationships_path(@user.id), method: :delete, class: "btn btn-danger" %>
-      <% else %>
-        <%= link_to 'フォローする', user_relationships_path(@user.id), method: :POST, class: "btn btn-success" %>
-      <% end %>
-    <% end %>
-  </p>
-  <div class="d-flex">
-    <%= link_to follows_user_path(@user) do %>
-      <h6><%= @following_users.count %> Follow</h6>
-    <% end %>&nbsp;&nbsp;
-    <%= link_to followers_user_path(@user) do %>
-      <h6><%= @follower_users.count %> Follower</h6>
-    <% end %>
-  </div>
-  <div>
-    <% unless @user.id == current_user.id %>
-      <% if @is_room == true %>
-        <%= link_to 'メッセージへ', room_path(@room_id) %>
-      <% else %>
-        <%= form_with model: @room do |f| %>
-          <%= fields_for @entry do |e| %>
-            <% e.hidden_field :user_id, value: @user.id %>
-          <% end %>
-
-          <%= f.submit 'メッセージを送る' %>
+<% if user_signed_in? %>
+  <div class="row">
+    <div class="col-4 text-center">
+      <% if current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォローを外す', user_relationships_path(@user.id), method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to 'フォローする', user_relationships_path(@user.id), method: :POST, class: "btn btn-success" %>
         <% end %>
-
       <% end %>
-    <% end %>
+    </div>
+    <div class="col-4">
+      <% unless @user.id == current_user.id %>
+        <% if @is_room == true %>
+          <%= link_to 'メッセージへ', room_path(@room_id), class: "btn btn-success" %>
+        <% else %>
+          <%= form_with model: @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <% e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit 'メッセージを送る', class: "btn btn-success" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="d-flex col">
+      <%= link_to follows_user_path(@user) do %>
+        <h6><%= @following_users.count %> Follow</h6>
+      <% end %>&nbsp;&nbsp;
+      <%= link_to followers_user_path(@user) do %>
+        <h6><%= @follower_users.count %> Follower</h6>
+      <% end %>
+    </div>
   </div>
   <div class="m-5">
     <%= render 'mywork', user: @user, skills: @skills %>
   </div>
+<% end %>
 </div>

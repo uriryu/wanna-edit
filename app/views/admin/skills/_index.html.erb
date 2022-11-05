@@ -1,7 +1,7 @@
 <table class="table m-5">
   <thead>
     <tr>
-      <th>商品ID</th>
+      <th>ユーザー名</th>
 			<th>商品名</th>
 			<th>税抜価格</th>
 			<th>ジャンル</th>
@@ -11,7 +11,7 @@
   <tboyd>
     <% skills.each do |skill| %>
       <tr>
-        <td><%= skill.id %></td>
+        <td><%= skill.user.user_name %></td>
         <td><%= link_to skill.name, admin_skill_path(skill), class: "underline" %></td>
         <td><%= skill.price %> 円</td>
         <td>

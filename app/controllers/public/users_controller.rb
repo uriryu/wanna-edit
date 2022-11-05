@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:profile]
   before_action :set_current_user, except: [:profile, :follows, :followers]
 
   def show
@@ -23,6 +23,7 @@ class Public::UsersController < ApplicationController
     @following_users = @user.following_user
     @follower_users = @user.follower_user
 
+  if user_signed_in?
     # DM機能
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
@@ -40,6 +41,7 @@ class Public::UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+  end
   end
 
   def edit

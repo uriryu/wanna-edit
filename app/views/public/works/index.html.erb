@@ -1,28 +1,35 @@
 <div class="container">
-  <div class="row mx-2">
-    <table class="table">
+  <div class="mx-2">
+    <table class="table table-bordered">
       <thead></thead>
       <tbody>
+        <% @works.each do |work| %>
         <tr>
-          <% @works.each do |work| %>
-          <td class="align-middle">
-             <p><%= link_to work.title, work_path(work.id) %></p>
+          <td class="align-middle col-1">
+            <%= link_to work.user.user_name, profile_path(work.user.id) %>
           </td>
-          <td class="align-middle">
-            <p><%= work.body %></p>
+          <td class="align-middle col-1">
+            <%= link_to work.title, work_path(work.id) %>
           </td>
-          <td class="align-middle">
-            <p><%= image_tag work.image, size: '320x180' %></p>
+          <td class="align-middle col-2">
+            <%= work.body %>
           </td>
-          <td class="align-middle">
+          <td class="align-middle col-4">
+            <% if work.image.attached? %>
+              <%= image_tag work.image, size: '320x180', class: "img-responsive" %><br>
+            <% else %>
+              <%= image_tag 'no_image', size: '320x180' %><br>
+            <% end %>
+          </td>
+          <td class="align-middle col-1">
             <p class="favorites_buttons_<%= work.id %>">
             <!--更新する箇所を指定するためidをつける。-->
             <%= render "public/favorites/favorite", work: work %>
             <!--eachメソッド内のrender処理の為、インスタンス変数は存在しない。-->
             </p>
           </td>
-          <% end %>
         </tr>
+        <% end %>
       </tbody>
     </table>
 

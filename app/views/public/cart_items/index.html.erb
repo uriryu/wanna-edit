@@ -19,7 +19,7 @@
           <% skill = cart_item.skill %>
           <tr>
             <td class="align-middle">
-              <%= image_tag skill.get_image, class: "cart_item_image" %>
+              <%= image_tag skill.get_image, class: "cart_item_image", size: "320x180" %>
             </td>
             <td class="align-middle"><%= link_to skill.name, skill_path(skill) %></td>
             <td class="text-right align-middle"><%= skill.with_tax_price %> 円</td>

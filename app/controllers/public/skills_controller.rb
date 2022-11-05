@@ -1,5 +1,5 @@
 class Public::SkillsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :ensure_skill, only: [:show, :edit, :update]
 
   def new
@@ -24,9 +24,6 @@ class Public::SkillsController < ApplicationController
   end
 
   def show
-    @work = Work.find(params[:id])
-    @reviews = @work.reviews
-    @review = Review.find_by(params[:id])
     @cart_item = CartItem.new
   end
 

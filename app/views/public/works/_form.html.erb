@@ -25,9 +25,28 @@
    <div class="my-3">
       <h3><%= f.label :image, "サムネイル" %></h3>
       <div class="image_field">
-				<%= image_tag (work.image.attached? ? work.image : 'no_image.png'), id: "img_prev", class: "work_image" %>
-				<span class="btn btn-file btn-info"><%= f.file_field :image,  accept:'image/*' %>画像選択</span>
+				<%= image_tag (work.image.attached? ? work.image : 'no_image.png'), id: "img_prev", width: "200" , height: "200" %>
+				<span class="btn btn-file btn-info"><%= f.file_field :image,  accept:'image/*', :id => 'post_post_img' %>画像選択</span>
 				<p>選択するとプレビューされます。画像未選択のままだと、「NOIMAGE」になります。</p>
+
+				<script type="text/javascript">
+        $(function() {
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                $('#img_prev').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+          $("#post_post_img").change(function() {
+            $('#img_prev').removeClass('hidden');
+            readURL(this);
+          });
+        });
+        </script>
+
 			</div>
     </div>
     <%= f.submit submit, class: "btn btn-primary m-2" %>

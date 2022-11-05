@@ -42,7 +42,7 @@ class Skill < ApplicationRecord
     recommends = []
     active_genres = Genre.only_active.includes(:skills)
     active_genres.each do |genre|
-      skill = genre.skills.last
+      skill = genre.skills.first
       recommends << skill if skill
     end
     recommends

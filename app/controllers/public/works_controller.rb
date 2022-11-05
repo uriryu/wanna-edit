@@ -1,6 +1,6 @@
 class Public::WorksController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
-  before_action :ensure_work, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_action :ensure_work, only: [:show, :edit, :update, :destroy]
   def new
     @work = Work.new
   end
@@ -22,7 +22,7 @@ class Public::WorksController < ApplicationController
       redirect_to works_path
     else
       @works = Work.all
-      render :index
+      render :new
     end
   end
 
@@ -31,8 +31,8 @@ class Public::WorksController < ApplicationController
   end
 
   def destroy
-    @work.delete
-    redirect_to user_path
+    @work.destroy
+    redirect_to works_path
   end
 
   private

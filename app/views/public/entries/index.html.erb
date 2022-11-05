@@ -4,9 +4,9 @@
     <tbody>
       <tr>
         <td>
-          <% @entries.each do |entry| %>
-            <%= link_to room_path(entry.room_id) do %>
-              <div class="my-3"><%= entry.user.user_name %>さんとのメッセージ</div>
+          <% @anotherEntries.each do |e| %>
+            <%= link_to room_path(e.room.id) do %>
+              <h5 class="my-4"><%= e.user.user_name %>さんとのメッセージ</h5>
             <% end %>
           <% end %>
         </td>

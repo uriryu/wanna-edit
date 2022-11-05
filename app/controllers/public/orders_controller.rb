@@ -49,7 +49,7 @@ class Public::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params) && @order.confirm_deposit?
-      @order.order_details.update_all(making_status: 1)
+      @order.order_details.update(making_status: 1)
     end
     redirect_to orders_path
   end

@@ -5,11 +5,11 @@
 		  <th>商品名</th>
 		  <th>税抜価格</th>
 		  <th>ジャンル</th>
-		  <th>販売ステータス</th>
     </tr>
   </thead>
   <tbody>
     <% skills.each do |skill| %>
+      <% if skill.is_active == true %>
       <tr>
         <td>
           <%= image_tag skill.get_image, id: "img_prev", size: '180x120' %>
@@ -21,14 +21,9 @@
             <span><%=link_to genre.name, skills_path(genre_id: genre.id) %></span>
           <% end %>
         </td>
-        <td class="align-middle">
-          <% if skill.is_active? %>
-            <span class="text-success">販売中</span>
-          <% else %>
-            <span class="text-danger">販売停止中</span>
-          <% end %>
-        </td>
       </tr>
+      <% else %>
+      <% end %>
     <% end %>
   </tbody>
 </table>

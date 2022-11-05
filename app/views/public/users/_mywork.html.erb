@@ -24,9 +24,9 @@
             <td class="m-2 text-center align-middle">
               <%= link_to work_path(work.id) do %>
                 <% if work.image.attached? %>
-                  <%= image_tag work.image, size: '50%x50%', class: "img-responsive" %><br>
+                  <%= image_tag work.image, size: '320x180', class: "img-responsive" %><br>
                 <% else %>
-                  <%= image_tag 'no_image', size: '50%x50%' %><br>
+                  <%= image_tag 'no_image', size: '320x180' %><br>
                 <% end %>
               <% end %>
             </td>
@@ -44,8 +44,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="text-center">商品画像</th>
-		        <th class="text-center">商品名</th>
+            <th class="text-center">商品名</th>
+		        <th class="text-center">商品画像</th>
 		        <th class="text-center">税抜価格</th>
 		        <th class="text-center">ジャンル</th>
 		        <th class="text-center">販売ステータス</th>
@@ -55,8 +55,8 @@
           <% skills.each do |skill| %>
 
             <tr>
-              <td class="text-center"><%= image_tag skill.get_image, id: "img_prev", size: '200x120' %></td>
               <td class="text-center align-middle"><%= link_to skill.name, skill_path(skill), class: 'underline' %></td>
+              <td class="text-center"><%= image_tag skill.get_image, id: "img_prev", size: '320x180' %></td>
               <td class="text-center align-middle"><%= skill.price %> 円</td>
               <td class="text-center align-middle">
                 <% skill.genres.each do |genre| %>

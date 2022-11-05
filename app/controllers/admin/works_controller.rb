@@ -19,6 +19,7 @@ class Admin::WorksController < ApplicationController
     @work.delete
     redirect_to admin_user_path
   end
+  # updateをかく
 
   private
 

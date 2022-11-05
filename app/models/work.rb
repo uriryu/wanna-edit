@@ -1,11 +1,14 @@
 class Work < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  has_many :reviews, dependent: :destroy
   belongs_to :user
+  has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
 
   has_one_attached :image
+
+  validates :title, presence: true
+  validates :body, presence: true
+
 
   def get_image(*size)
     unless image.attached?
@@ -31,5 +34,16 @@ class Work < ApplicationRecord
       0.0
     end
   end
+
+  private
+
+  def image_type
+    if !image.blob
+      errors.add(:image, 'をアップロードしてください')
+    elsif !image.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
+    end
+  end
+
 
 end
