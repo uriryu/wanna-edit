@@ -1,7 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  before_action :authenticate_admin!
   before_action :ensure_order, only: [:show, :update]
-
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])

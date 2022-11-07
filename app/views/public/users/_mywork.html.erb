@@ -52,7 +52,7 @@
           </tr>
         </thead>
         <tbody>
-          <% skills.each do |skill| %>
+          <% user.skills.each do |skill| %>
 
             <tr>
               <td class="text-center align-middle"><%= link_to skill.name, skill_path(skill), class: 'underline' %></td>

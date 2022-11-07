@@ -26,7 +26,7 @@ class Skill < ApplicationRecord
   end
 
   def with_tax_price
-    (price * 1.1).ceil
+    (price * 1.1).floor
     # ceilは切り上げ、floorが切り捨て、roundが四捨五入
   end
 

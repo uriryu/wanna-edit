@@ -1,4 +1,5 @@
 class Public::OrderDetailsController < ApplicationController
+  before_action :authenticate_user!
   def update
     @order = Order.find(params[:order_id])
     @order_detail = @order.order_details.find_by(params[:id])

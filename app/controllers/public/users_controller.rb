@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :set_current_user, except: [:profile, :follows, :followers]
 
   def show
-    @works = @user.works.page(params[:page]).reverse_order
+    @works = @user.works.page(params[:page]).per(4).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
 

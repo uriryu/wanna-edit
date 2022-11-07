@@ -1,9 +1,9 @@
 class Public::HomesController < ApplicationController
   def top
     @genres = Genre.only_active.includes(:skills)
-    @skills = Skill.page(params[:id]).per(4)
+    @skills = Skill.page(params[:skill_page]).per(4)
     @skill = Skill.find_by(params[:id])
-    @works = Work.page(params[:page])
+    @works = Work.page(params[:work_page]).per(4)
   end
 
   def search

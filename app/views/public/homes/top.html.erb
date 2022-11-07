@@ -17,7 +17,7 @@
       </div>
       <h3>おすすめ商品</h3>
       <div class="skills">
-        <% @skills.shuffle[0..9].each do |skill| %>
+        <% @skills.each do |skill| %>
           <%= link_to skill_path(skill) do %>
             <%= image_tag skill.get_image %>
             <h5><%= skill.name %></h5>
@@ -29,17 +29,20 @@
             <p>税込: <%= skill.with_tax_price %> 円</p>
           <% end %>
         <% end %>
-        <%= paginate @skills %>
       </div>
+      <%= paginate @skills, :param_name => 'skill_page' %>
     </div>
     <div class="flex-column mx-2">
       <h3><%= link_to "実績一覧", works_path %></h3>
-      <% @works.each do |work| %>
-        <%= link_to work_path(work) do %>
-          <%= image_tag work.get_image %>
-          <h5><%= work.title %></h5>
+      <div>
+        <% @works.each do |work| %>
+          <%= link_to work_path(work) do %>
+            <%= image_tag work.get_image %>
+            <h5><%= work.title %></h5>
+          <% end %>
+          <%= paginate @works, :param_name => 'work_page' %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
