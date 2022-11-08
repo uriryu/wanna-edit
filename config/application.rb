@@ -1,5 +1,5 @@
 require_relative "boot"
-
+# config.paths.add 'lib', eager_load: true
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
