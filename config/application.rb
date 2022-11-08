@@ -1,5 +1,4 @@
 require_relative "boot"
-# config.paths.add 'lib', eager_load: true
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -13,7 +12,7 @@ module WannaEdit
 
     config.i18n.default_locale = :ja
 
-    config.paths.add 'lib', eager_load: true
+    # config.paths.add 'lib', eager_load: true
 
     # Configuration for the application, engines, and railties goes here.
     #
