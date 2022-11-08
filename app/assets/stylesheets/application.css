@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ body {
+  background-image: url("../images/hoge.jpg");
+ }
+
+
  .nav-item a:hover {
     background-color: #0FF;
     color: #FFF;
