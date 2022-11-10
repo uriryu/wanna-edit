@@ -28,17 +28,22 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders.includes(:order_details, :skills).page(params[:page]).reverse_order
+  
     @order = Order.find_by(params[:order_id])
     @order_details = @order.order_details.includes(:skill)
-      if params[:user_id]
-        @user = User.find(params[:user_id])
-        @orders = @user.orders.page(params[:page]).reverse_order
-      elsif params[:created_at] == "today"
-        @orders = Order.ordered_today.includes(:user).page(params[:page]).reverse_order
-      else
-        @orders = Order.includes(:user).page(params[:page]).reverse_order
-      end
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @orders = @user.orders.page(params[:page]).reverse_order
+    elsif params[:created_at] == "today"
+      @orders = Order.ordered_today.includes(:user).page(params[:page]).reverse_order
+    else
+      #@orders = current_user.orders.includes(:order_details, :skills).page(params[:page]).reverse_order
+      #@orders = Order.includes(:user).page(params[:page]).reverse_order
+      
+      @target_skill_ids = current_user.skills.ids
+      @target_order_ids = OrderDetail.select(:order_id).where(skill_id: @target_skill_ids)
+      @orders = Order.where(id: @target_order_ids).page(params[:page]).reverse_order
+    end
   end
 
   def show

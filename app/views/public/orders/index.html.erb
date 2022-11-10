@@ -12,8 +12,8 @@
         </tr>
       </thead>
       <tbody>
-        <% @orders.each do |order| %>
-          <% if order.user_id == current_user.id %>
+        <% current_user.orders.each do |order| %>
+
           <tr>
             <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
             <td>
@@ -27,7 +27,7 @@
               <%= link_to "表示する", order_path(order), class: "btn btn-primary" %>
             </td>
           </tr>
-          <% end %>
+
         <% end %>
       </tbody>
     </table>
@@ -51,15 +51,19 @@
          <% @orders.each do |order| %>
           <tr>
             <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
-              <% order.skills.each do |skill| %>
+            <% order.skills.where(id: @target_skill_ids).each do |skill| %>
+              <td>
                 <p><%= skill.name %></p>
+              </td>
+              <td>
+                <p><%= skill.with_tax_price %></p>
+              </td>
               <% end %>
             </td>
-            <td><%= order.total_payment %></td>
             <td><%= link_to order.name, profile_path(order.user_id) %></td>
             <td>
-              <% order.order_details.each do |order_detail| %>
+              <!--whereと変数(controllerに記述)したものを使って、どれが必要なのかを絞っている。-->
+              <% order.order_details.where(skill_id: @target_skill_ids).each do |order_detail| %>
                 <%= form_with model: order_detail, url: order_order_detail_path(order_id: order.id, id: order_detail.id), class: 'form-inline', method: :patch do |g| %>
                   <%= g.select :making_status, OrderDetail.making_statuses_i18n.invert, {}, class: 'form-control' %>
                   <%= g.submit '更新', class: 'btn btn-primary offset-sm-2' %>
@@ -72,6 +76,7 @@
                 <%= f.submit '更新', class: 'btn btn-primary offset-sm-2' %>
               <% end %>
             </td>
+
           </tr>
         <% end %>
       </tbody>

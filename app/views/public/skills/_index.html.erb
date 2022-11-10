@@ -1,6 +1,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>編集者</th>
       <th>商品画像</th>
 		  <th>商品名</th>
 		  <th>税抜価格</th>
@@ -11,6 +12,7 @@
     <% skills.each do |skill| %>
       <% if skill.is_active == true %>
       <tr>
+        <td class="align-middle"><%= link_to skill.user.user_name, profile_path(skill.user_id) %></td>
         <td>
           <%= image_tag skill.get_image, id: "img_prev", size: '180x120' %>
         </td>
