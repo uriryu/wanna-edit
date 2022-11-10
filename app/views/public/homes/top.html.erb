@@ -6,7 +6,7 @@
         <%= link_to genre.name, skills_path(genre_id: genre.id) %>
       <% end %>
     </div>
-    <div class="content col-9">
+    <div class="content col-5">
       <div class="mv">
         <p>
           ようこそ!Wannaeditへ<br>
@@ -14,7 +14,14 @@
           交流するサイトになります。<br>
           依頼には会員登録が必要になります。
         </p>
+        <p>
+          商品・実績を掲載したい場合、<br>
+          マイページの編集から<br>
+          <span class="text-success">"編集会員"</span>を選択します!
+        </p>
       </div>
+    </div>
+    <div class="m-4">
       <h3>おすすめ商品</h3>
       <div class="skills">
         <% @skills.each do |skill| %>
@@ -32,7 +39,7 @@
       </div>
       <%= paginate @skills, :param_name => 'skill_page' %>
     </div>
-    <div class="flex-column mx-2">
+    <div class="flex-column m-4">
       <h3><%= link_to "実績一覧", works_path %></h3>
       <div>
         <% @works.each do |work| %>
