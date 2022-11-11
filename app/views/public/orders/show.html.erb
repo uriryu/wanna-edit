@@ -39,6 +39,7 @@
           <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
+          <th>製作状況</th>
         </tr>
       </thead>
       <tbody>
@@ -53,13 +54,16 @@
             <td class="align-middle"><%= order_detail.price %> 円</td>
             <td class="align-middle"><%= order_detail.amount %></td>
             <td class="align-middle"><%= order_detail.subtotal %> 円</td>
+            <td class="align-middle">
+              <%= order_detail.making_status_i18n %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
 
-    <caption class="fz18 text-left">請求情報</caption>
-    <table class="confirm_prices has_border m-3">
+    <caption class="text-left m-5">請求情報</caption>
+    <table class="table m-3">
 			<thead>
 				<tr>
 					<th></th>

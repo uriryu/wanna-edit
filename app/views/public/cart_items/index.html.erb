@@ -1,13 +1,15 @@
-<div class="container">
+<div class="container mt-5">
   <h2>ショッピングカート</h2>
   <% if @cart_items.first %>
-    <div class="text-right mb2">
+    <div class="text-center mb-4">
       <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class: "btn btn-danger" %>
     </div>
     <table class="table">
       <thead>
         <tr>
-          <th colspan="2">商品名</th>
+          <th></th>
+          <th>編集者</th>
+          <th>商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
@@ -21,6 +23,7 @@
             <td class="align-middle">
               <%= image_tag skill.get_image, class: "cart_item_image", size: "320x180" %>
             </td>
+            <td class="align-middle"><%= link_to skill.user.user_name, profile_path(skill.user_id) %></td>
             <td class="align-middle"><%= link_to skill.name, skill_path(skill) %></td>
             <td class="text-right align-middle"><%= skill.with_tax_price %> 円</td>
             <td class="align-middle">
@@ -36,9 +39,8 @@
           </tr>
         <% end %>
         <tr>
-          <td></td>
-          <td class="text-left"><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %></td>
-          <td></td>
+          <td colspan="4"></td>
+          <td class="text-left offset-md-4"><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %></td>
           <td class="text-right">合計金額</td>
           <td class="text-right bold"><%= @cart_items.sum(&:subtotal) %> 円</td>
           <td></td>
