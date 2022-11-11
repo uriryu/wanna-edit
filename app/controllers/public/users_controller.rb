@@ -60,6 +60,7 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user.update(is_deleted: true)
+    @user.skills.update(is_active: false)
     reset_session
     redirect_to root_path
   end

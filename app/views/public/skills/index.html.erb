@@ -5,14 +5,10 @@
     <% else %>
       <h2>商品一覧 (全<%= @all_skills_count %> 件)</h2>
     <% end %>
-
     <h3 class="button0 offset-md-8">
       <span><%= link_to "商品追加", new_skill_path %></span>
     </h3>
   </div>
-
-
-
   <% if @skills.first %>
     <%= render 'public/skills/index', skills: @skills %>
     <%= paginate @skills %>

@@ -53,10 +53,10 @@
     <!--%= link_to "注文履歴一覧を見る", admin_user_orders_path(@user), class: "btn btn-primary" %-->
   </span>
 
-  <h4 class="my-5">
+  <h4 class="m-5">
     <% if @works.first %>
       <p><%= @user.user_name %>の実績一覧 (全<%= @all_works_count %>件)</p>
-      <table class="admin_works table">
+      <table class="table">
         <thead>
           <tr>
             <th>タイトル</th>
@@ -78,9 +78,41 @@
         <% end %>
         </tbody>
       </table>
-      <!--paginate-->
+      <%= paginate @works, :param_name => 'work_page' %>
     <% else %>
       <h3>実績がみつかりません。</h3>
     <% end %>
   </h4>
+</div>
+<div class="text-center my-5">
+  <% if @skills.first %>
+  <h4><%= @user.user_name %>の商品一覧</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>料金</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @skills.each do |skill| %>
+      <tr>
+        <td><%= link_to skill.name, admin_skill_path(skill), class: "underline" %></td>
+        <td><%= skill.price %></td>
+        <td>
+          <% if skill.is_active == true %>
+            <span class="text-active">販売中</span>
+          <% else %>
+            <span class="text-invalid">販売停止中</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= paginate @skills, :param_name => 'skill_page' %>
+  <% else %>
+    <h3>商品がみつかりません。</h3>
+  <% end %>
 </div>

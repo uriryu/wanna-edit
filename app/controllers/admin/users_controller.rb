@@ -7,7 +7,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @works = @user.works
+    @works = @user.works.page(params[:work_page]).per(4)
+    @skills = @user.skills.page(params[:skill_page]).per(4)
     @all_works_count = @works.count
   end
 
