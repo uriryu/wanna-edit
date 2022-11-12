@@ -20,7 +20,7 @@ class Public::SkillsController < ApplicationController
       all_skills = Skill.includes(:genres)
     end
     @skills = all_skills.page(params[:page])
-    @all_skills_count = all_skills.count
+    @all_skills_count = all_skills.where(is_active: true).count
   end
 
   def show
