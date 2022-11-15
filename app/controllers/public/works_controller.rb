@@ -1,6 +1,8 @@
 class Public::WorksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :ensure_work, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
+
   def new
     @work = Work.new
   end
@@ -43,5 +45,13 @@ class Public::WorksController < ApplicationController
 
   def ensure_work
     @work = Work.find(params[:id])
+  end
+
+  def ensure_user
+    @work = Work.find(params[:id])
+    if @work.user.id != current_user.id
+      flash[:alert] = "権限がありません"
+      redirect_to works_path
+    end
   end
 end

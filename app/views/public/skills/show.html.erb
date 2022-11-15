@@ -9,6 +9,10 @@
     <thead></thead>
     <tbody>
       <tr>
+        <td>ユーザー名</td>
+        <td><%= link_to @skill.user.user_name, profile_path(@skill.user.id) %></td>
+      </tr>
+      <tr>
         <td>商品名</td>
         <td><%= @skill.name %></td>
       </tr>

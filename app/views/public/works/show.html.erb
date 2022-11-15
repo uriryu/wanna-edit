@@ -21,6 +21,10 @@
         </thead>
         <tbody>
           <tr>
+            <td>ユーザー名</td>
+            <td><%= link_to @work.user.user_name, profile_path(@work.user.id) %></td>
+          </tr>
+          <tr>
             <td>タイトル</td>
             <td><%= @work.title %></td>
           </tr>

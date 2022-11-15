@@ -41,4 +41,5 @@ class Admin::GenresController < ApplicationController
   def ensure_genre
     @genre = Genre.find(params[:id])
   end
+  
 end

@@ -1,6 +1,7 @@
 class Public::SkillsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :ensure_skill, only: [:show, :edit, :update]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def new
     @skill = Skill.new
@@ -43,4 +44,11 @@ class Public::SkillsController < ApplicationController
     @skill = Skill.find(params[:id])
   end
 
+  def ensure_user
+    @skill = Skill.find(params[:id])
+    if @skill.user.id != current_user.id
+      flash[:alert] = "権限がありません"
+      redirect_to skills_path
+    end
+  end
 end

@@ -1,6 +1,8 @@
 class Public::ReviewsController < ApplicationController
-   before_action :authenticate_user!, only: [:create]
-   before_action :ensure_review, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:create]
+  before_action :ensure_review, only: [:edit, :update]
+  before_action :ensure_user, only: [:edit, :update]
+
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
@@ -43,5 +45,13 @@ class Public::ReviewsController < ApplicationController
 
   def ensure_review
     @review = Review.find(params[:id])
+  end
+
+  def ensure_user
+    @review = Review.find(params[:id])
+    if @review.user.id != current_user.id
+      flash[:alert] = "権限がありません"
+      redirect_to works_path
+    end
   end
 end

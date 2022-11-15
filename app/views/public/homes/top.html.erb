@@ -25,15 +25,17 @@
       <h3>おすすめ商品</h3>
       <div class="skills">
         <% @skills.each do |skill| %>
-          <%= link_to skill_path(skill) do %>
-            <%= image_tag skill.get_image %>
-            <h5><%= skill.name %></h5>
-            <p>
-              <% @skill.genres.each do |genre| %>
-                <span>ジャンル: <%= genre.name %></span>
-              <% end %>
-            </p>
-            <p>税込: <%= skill.with_tax_price %> 円</p>
+          <% if skill.is_active == true %>
+            <%= link_to skill_path(skill) do %>
+              <%= image_tag skill.get_image %>
+              <h5><%= skill.name %></h5>
+              <p>
+                <% @skill.genres.each do |genre| %>
+                  <span>ジャンル: <%= genre.name %></span>
+                <% end %>
+              </p>
+              <p>税込: <%= skill.with_tax_price %> 円</p>
+            <% end %>
           <% end %>
         <% end %>
       </div>
