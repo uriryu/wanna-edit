@@ -72,6 +72,8 @@ group :production do
   gem 'mysql2'
 end
 
+gem 'gon'
+
 gem "net-http"
 gem "net-smtp"
 gem "net-pop"

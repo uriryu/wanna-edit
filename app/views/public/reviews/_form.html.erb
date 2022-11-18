@@ -11,17 +11,17 @@
       <%= f.hidden_field :reputation, id: :review_star %>
     </div>
 
-      <script>
-        $('#star').empty();
-        $('#star').raty({
-          size     : 36,
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          scoreName: 'review[reputation]',
-          half: true,
-        });
-      </script>
+    <script>
+      $('#star').empty();
+      $('#star').raty({
+        size     : 36,
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: 'review[reputation]',
+        half: true,
+      });
+    </script>
 
     <%= f.hidden_field :work_id, { value: work.id} %>
     <p class="ml-3 my-3"><%= link_to "他のレビューも見る", work_reviews_path(work.id), class: "button light" %></p>
