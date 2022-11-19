@@ -8,16 +8,23 @@
   <div class="field">
     <%= f.label :reputation, "評価" %>
     <div id="star<%= review.id %>"></div>
+
     <script>
-      $('#star<%= review.id %>').empty();
-      $('#star<%= review.id %>').raty({
-        size  :36,
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        half: true,
-        scoreName: 'review[reputation]',
-      });
+    raty('#star<%= review.id %>',{});
+
+    // edit_raty('#star<%= review.id %>',
+    //           "<%= asset_path('star-on.png') %>",
+    //           "<%= asset_path('star-off.png') %>",
+    //           "<%= asset_path('star-half.png') %>",);
+      // $('#star<%= review.id %>').empty();
+      // $('#star<%= review.id %>').raty({
+      //   size  :36,
+      //   starOn: "<%= asset_path('star-on.png') %>",
+      //   starOff: "<%= asset_path('star-off.png') %>",
+      //   starHalf: "<%= asset_path('star-half.png') %>",
+      //   half: true,
+      //   scoreName: 'review[reputation]',
+      // });
     </script>
   </div>
   <div class="mt-3 row">

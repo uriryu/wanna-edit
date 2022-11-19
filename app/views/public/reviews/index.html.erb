@@ -36,16 +36,18 @@
         <td>
           <div id="star<%= review.id %>"></div>
           <script>
-            $('#star<%= review.id %>').empty();
-            $('#star<%= review.id %>').raty({
-              size  :36,
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              half: true,
-              readOnly: true,
-              score: <%= review.reputation %>,
-            });
+          raty('#star<%= review.id %>',{readOnly: true, score: <%= review.reputation %>});
+          // 追加したいものをページごとに追記することで、そのページだけのものになる。↑
+            // $('#star<%= review.id %>').empty();
+            // $('#star<%= review.id %>').raty({
+            //   size  :36,
+            //   starOn: "<%= asset_path('star-on.png') %>",
+            //   starOff: "<%= asset_path('star-off.png') %>",
+            //   starHalf: "<%= asset_path('star-half.png') %>",
+            //   half: true,
+            //   readOnly: true,
+            //   score: <%= review.reputation %>,
+            // });
           </script>
         </td>
         <td>
