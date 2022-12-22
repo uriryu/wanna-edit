@@ -43,7 +43,7 @@
   </table>
   <div class="row mx-2 my-2">
     <div class="col-3">
-      <% if current_user.orders.exists?(1) %>
+      <% if current_user.orders.exists?(1) || current_user.is_editor_i18n == "編集会員" %>
         <%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary" %>
       <% else %>
       <% end %>
