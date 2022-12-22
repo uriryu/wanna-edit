@@ -43,7 +43,10 @@
   </table>
   <div class="row mx-2 my-2">
     <div class="col-3">
-      <%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary" %>
+      <% if current_user.orders.exists?(1) %>
+        <%= link_to "注文履歴一覧", orders_path, class: "btn btn-primary" %>
+      <% else %>
+      <% end %>
     </div>
     <div class="col-1">
       <%= link_to follows_user_path(@user) do %>
