@@ -1,9 +1,11 @@
 /*global $*/
 var starCommonOption = {scoreName: 'review[reputation]',half: true};
+//今回は、再宣言をするため、varを使用している。
 function raty(id,starOption){
   // starOption.half = true;
   Object.assign(starOption, starCommonOption);
-
+// varは変数で重複が可能なため、影響範囲が広い。そのためあまり好ましくはない。
+// 変数宣言のみでもエラーにならない。
   $(id).empty();
   $(id).raty(starOption);
 }
