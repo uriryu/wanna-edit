@@ -10,7 +10,9 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
-#/db/seeds.rb
+/db/seeds.rb
+# viを使って本番環境に書き込める。
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
